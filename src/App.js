@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./css/styles.css";
+
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+
+import Header from "./components/header/Header";
+import SideMenu from "./components/sidemenu/SideMenu";
+import IndexPage from "./pages/index/IndexPage";
+import TeachersList from "./pages/teachers/TeachersList/TeachersList";
+
+import ScrollToTop from "./utils/scrollToTop";
+import TeacherProfile from "./pages/teachers/TeacherProfile/TeacherProfile";
+import StudentsList from "./pages/students/StudentsList/StudentsList";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <ScrollToTop/>
+
+        <Header />
+        <SideMenu />
+
+        <Routes>
+          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/home" element={<IndexPage />} />
+          <Route path="/teachers/list" element={<TeachersList />} />
+          <Route path="/teachers/profile/:id" element={<TeacherProfile />} />
+          <Route path="/students/list" element={<StudentsList />} />
+        </Routes>
+
+
+      </Router>
     </div>
   );
 }
