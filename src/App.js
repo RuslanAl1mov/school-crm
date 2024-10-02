@@ -27,7 +27,7 @@ function App() {
           <Route path="/teachers/profile/:id" element={<TeacherProfile />} />
           <Route path="/students/list" element={<StudentsList />} />
         </Routes>
-
+ 
 
       </Router>
     </div>
