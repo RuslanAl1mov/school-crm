@@ -42,3 +42,6 @@ eslintcache
 
 # OS-specific files
 Thumbs.db # Windows
+
+# Bash deploy file
+deploy.sh
