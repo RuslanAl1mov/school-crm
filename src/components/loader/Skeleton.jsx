@@ -16,7 +16,6 @@ const Skeleton = ({
     height={height}
     backgroundColor={backgroundColor}
     foregroundColor={foregroundColor}
-    viewBox={`0 0 ${width} ${height}`}
   >
     <rect x="0" y="0" rx={rx} ry={ry} width={width} height={height} />
   </ContentLoader>

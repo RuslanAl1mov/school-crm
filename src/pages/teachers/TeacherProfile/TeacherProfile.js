@@ -1,79 +1,61 @@
+import './style.css';
+import icons from './../../../img/icons/icons.svg';
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import icons from './../../../img/icons/icons.svg';
-import Skeleton from "../../../components/loader/Skeleton";
-import './style.css';
-import GroupBlockInfo from '../../../components/teachers/groupInfoBlock/GroupInfoBlock';
-import GroupBlockInfoSkeleton from '../../../components/teachers/groupInfoBlock/GroupInfoBlockSkeleton';
+
+import TeacherProfileHeader from './TeacherProfileHeader/TeacherProfileHeader';
+import GroupBlockInfo from './GroupInfoBlock/GroupInfoBlock';
+import GroupBlockInfoSkeleton from './GroupInfoBlock/GroupInfoBlockSkeleton';
+import { fetchTeacher, fetchGroupInfo } from '../../../utils/api';
+
 
 const TeacherProfile = () => {
-    const { id: teacherId } = useParams(); // Получаем id из параметров URL
-    const [activeTab, setActiveTab] = useState('profile');  // Для переключения вкладок
-    const [teacherData, setTeacherData] = useState(null);   // Для хранения данных учителя
-    const [isLoading, setIsLoading] = useState(true);       // Для состояния загрузки
-    const [error, setError] = useState(null);               // Для состояния ошибки
-    const [activeGroup, setActiveGroup] = useState(null);   // Для выбора группы для показа информации
-    const [groupInfo, setGroupInfo] = useState(null);       // Информация о выбранной группе
-    const [loadingGroupInfo, setLoadingGroupInfo] = useState(false); // Для состояния загрузки информации группы
+    const { id: teacherId } = useParams(); 
+    const [activeTab, setActiveTab] = useState('profile');
+    const [teacherData, setTeacherData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);        
+    const [activeGroup, setActiveGroup] = useState(null);
+    const [groupInfo, setGroupInfo] = useState(null);
+    const [loadingGroupInfo, setLoadingGroupInfo] = useState(false);
 
-    // Функция для загрузки данных учителя из API
-    const fetchTeachers = async () => {
-        try {
-            const response = await fetch(`https://api.woow.uz/api/v1.0/teachers/${teacherId}`);
-            if (!response.ok) {
-                throw new Error('Ошибка при загрузке данных');
-            }
-            const data = await response.json();
-            setTeacherData(data); // Устанавливаем полученные данные
-            if (data?.groups?.length > 0) {
-                // Устанавливаем первую группу как активную, если есть группы
-                setActiveGroup(data.groups[0].id);
-                fetchGroupInfo(data.groups[0].id);
-            }
-        } catch (error) {
-            setError(error.message);
-        } finally {
-            setIsLoading(false); // Завершаем загрузку
-        }
-    };
-
-
-    const fetchGroupInfo = async (groupId) => {
-        try {
-            const response = await fetch(`https://api.woow.uz/api/v1.0/teachers/${teacherId}/group/${groupId}`);
-            if (!response.ok) {
-                throw new Error('Ошибка при загрузке информации о группе');
-            }
-            const data = await response.json();
-            console.log("Group data:", data); // Логируем данные группы
-            setGroupInfo(data); // Устанавливаем данные о выбранной группе
-        } catch (error) {
-            console.error("Error loading group info:", error.message); // Логируем ошибку
-            setError(error.message);
-        } finally {
-            setLoadingGroupInfo(false); // Выключаем состояние загрузки
-        }
-    };
-
-
-    // Обработчик клика по группе
-    const handleGroupClick = (groupId) => {
-        // Устанавливаем состояние загрузки для отображения скелетона
-        setLoadingGroupInfo(true);
-
-        // Устанавливаем активную группу
-        setActiveGroup(groupId);
-
-        // Загружаем данные о выбранной группе
-        fetchGroupInfo(groupId);
-    };
-
-
-    // Загружаем данные учителя при монтировании компонента
     useEffect(() => {
-        fetchTeachers();
+        const loadTeacherData = async () => {
+            if (!teacherId) return;
+            try {
+                const teacherData = await fetchTeacher(teacherId);
+                setTeacherData(teacherData);
+                if (teacherData?.groups?.length > 0) {
+                    setActiveGroup(teacherData.groups[0].id);
+                    const groupData = await fetchGroupInfo(teacherId, teacherData.groups[0].id);
+                    setGroupInfo(groupData);
+                }
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        loadTeacherData();
     }, [teacherId]);
 
+    
+    const handleGroupClick = async (groupId) => {
+        setLoadingGroupInfo(true);
+        setActiveGroup(groupId);
+        try {
+            const groupData = await fetchGroupInfo(teacherId, groupId);
+            setGroupInfo(groupData);
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setLoadingGroupInfo(false);
+        }
+    };
+
+    
     if (isLoading) {
         return <div>Загрузка...</div>;
     }
@@ -82,25 +64,11 @@ const TeacherProfile = () => {
         return <div>Ошибка: {error}</div>;
     }
 
-    // Возвращаем отображение в зависимости от состояния (загрузка, ошибка, успешные данные)
     return (
         <main className="mainwn-min-size">
-            <div className="mn-title-add-btn-bl">
-                <div className="mn-title-bl">
-                    {isLoading ? (
-                        <h1>
-                            <Skeleton width="100%" height="50px" rx={10} ry={10} />
-                        </h1>
-                    ) : error ? ( // Отображаем ошибку, если она есть
-                        <h1>{error}</h1>
-                    ) : teacherData ? ( // Если данные успешно загружены
-                        <h1>{teacherData.fullname}</h1>
-                    ) : (
-                        <h1>Преподаватель не найден</h1>
-                    )}
-                </div>
-            </div>
+            <TeacherProfileHeader teacherData={teacherData} isLoading={isLoading} error={error} />
 
+            {/* {Вкладки преподавателя на выбор} */}
             <div className="top-tabs-bl">
                 <div className="top-tabs-container-bl">
                     <a className={`top-tab-link ${activeTab === 'profile' ? 'top-tab-link--active' : ''}`} onClick={() => setActiveTab('profile')}>
@@ -119,6 +87,8 @@ const TeacherProfile = () => {
                 <div className="top-tabs-liner-solid"></div>
             </div>
 
+
+            {/* Вкладка с оновной информацие о преподавателе */}
             <div className={`main-big-tab-container ${activeTab === 'profile' ? 'main-big-tab-container--active' : ''}`}>
                 <div className="tchr-prof-tab-bl">
                     <div className="tchr-tab-fl-bl">
@@ -126,7 +96,6 @@ const TeacherProfile = () => {
                             <div className="prof-profile-main-info-bl">
                                 <div className="pr-prf-mn-bl1">
                                     <div className="pr-prf-mn-bl1-img-bl">
-                                        {/* Отображаем фото, если оно есть */}
                                         {teacherData?.photo ? (
                                             <img src={teacherData.photo} alt="Фото преподавателя" className="prf-mn-bl1-img" />
                                         ) : (
@@ -197,7 +166,7 @@ const TeacherProfile = () => {
                             teacherData.groups.map((group) => (
                                 <div
                                     className={`tchr-prof-gr-bl ${group.id === activeGroup ? 'tchr-prof-gr-bl--active' : ''}`}
-                                    key={group.group_id}
+                                    key={group.id} // Use group.id for key instead of group.group_id
                                     onClick={() => handleGroupClick(group.id)}
                                 >
                                     <div className="tchr-prof-gr-cnt-bl">
@@ -227,13 +196,13 @@ const TeacherProfile = () => {
 
                     <div className="tchr-tab-fl-bl" id="GroupInfoBlock">
                         {loadingGroupInfo ? (
-                            <GroupBlockInfoSkeleton /> // Отображаем скелетон во время загрузки
+                            <GroupBlockInfoSkeleton /> 
                         ) : error ? (
-                            <div className="big-nothing-found-bl1">{error}</div>// Отображаем сообщение об ошибке
+                            <div className="big-nothing-found-bl1">{error}</div>
                         ) : groupInfo ? (
-                            <GroupBlockInfo group={groupInfo} /> // Отображаем информацию о группе
+                            <GroupBlockInfo group={groupInfo} />
                         ) : (
-                            <GroupBlockInfoSkeleton /> // Отображаем скелетон во время загрузки
+                            <GroupBlockInfoSkeleton />
                         )}
                     </div>
                 </div>
