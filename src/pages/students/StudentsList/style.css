@@ -31,6 +31,7 @@
     font-size: 13px;
     font-weight: 600;
     height: 50px;
+    text-align: start;
 }
 
 .student-card {
@@ -71,12 +72,11 @@
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: var(--dark-gray);
+    justify-content: left;
+    color: var(--black);
     font-size: 13px;
     font-weight: 500;
 }
-
 
 .student-card-table-wrapper {
     display: flex;
@@ -107,6 +107,20 @@
 
 .student-card-table td span {
     color: var(--black);
+}
+
+.student-card-link-num {
+    padding-left: 10px;
+}
+
+.gr-inf-cnt-gr-num {
+    background-color: var(--light-gray);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: var(--black);
+    font-size: 11px;
 }
 
 #student-name {

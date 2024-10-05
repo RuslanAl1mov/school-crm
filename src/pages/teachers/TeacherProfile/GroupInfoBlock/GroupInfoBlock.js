@@ -1,7 +1,7 @@
 
 const GroupBlockInfo = ({group}) => {
     return (
-        <div className="tchr-tab-fl-bl" key={group.id} id="GroupBlockInfoSkeleton">
+        <div className="tchr-tab-fl-bl" id="GroupBlockInfoSkeleton">
             <div className="prof-profile-info-bl">
                 <div className="prof-profile-group-info-bl">
                     <div className="gr-info-cnt-bl">

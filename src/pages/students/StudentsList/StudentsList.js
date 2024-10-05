@@ -1,12 +1,21 @@
-import React, { useState } from "react";
 import "./style.css";
-import icons from "./../../../img/icons/icons.svg";
-import { NavLink } from 'react-router-dom';
-import StudentAddModalForm from "./../../../components/students/studentAddModalForm/StudentAddModalForm";
+
+import React, { useState, useEffect } from "react";
+
+import StudentAddModalForm from "./studentAddModalForm/StudentAddModalForm";
+import StudentCard from "./StudentCard/StudentCard";
+
+import { fetchStudentsList } from "../../../utils/api";
 
 const StudentsList = () => {
     // Стейт для управления модальным окном
     const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // Стейты для данных и загрузки
+    const [studentsData, setStudentsData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(false);
+
 
     // Функция для открытия модального окна
     const handleOpenModal = () => {
@@ -18,13 +27,42 @@ const StudentsList = () => {
         setIsModalOpen(false);
     };
 
+
+    // Загружаем данные при монтировании компонента
+    useEffect(() => {
+        const loadStudentsData = async () => {
+            try {
+                const studentsData = await fetchStudentsList();
+                setStudentsData(studentsData);
+            } catch (error) {
+                setError(error.message);
+                console.log(error)
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
+        loadStudentsData();
+    }, []);
+
+
+    if (isLoading) {
+        return <div>Загрузка...</div>;
+    }
+
+    if (error) {
+        return <div>Ошибка: {error}</div>;
+    }
+
+
+
     return (
         <main className="mainwn-min-size">
             <div className="stud-li-pg-content-bl">
                 <div className="mn-title-add-btn-bl">
                     <div className="mn-title-bl">
                         <h1>Студенты</h1>
-                        <span>Количество — 5</span>
+                        <span>Количество — {studentsData.total_active_students}</span>
                     </div>
 
                     <div className="mn-title-btn-bl">
@@ -38,283 +76,35 @@ const StudentsList = () => {
                         <table className="students-list-table">
                             <tbody>
                                 <tr>
-                                    <th></th>
+                                    <th><div className="student-card-link-num"></div></th>
                                     <th><input type='checkbox' /></th>
-                                    <th>Имя</th>
+                                    <th style={{paddingLeft: 30 + "px"}}>Имя</th>
                                     <th>Телефон</th>
-                                    <th>Группы</th>
-                                    <th>Учителя</th>
-                                    <th>Даты обучения</th>
+                                    <th>Группа</th>
+                                    <th>Преподаватель</th>
+                                    <th>Дата обучения</th>
                                     <th>Баланс</th>
                                     <th></th>
                                 </tr>
 
-                                <tr className="student-card">
-                                    <td>
-                                        <a className="student-card-link">
-                                            1.
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a className="student-card-link">
-                                            <input type='checkbox' />
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            <span id="student-name">
-                                                Dilshodov Axmat
-                                            </span>
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            91 234 56 78
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <a className="student-card-link" id="student-actions">
-                                            <svg className="index-card-svg">
-                                                <use href={`${icons}#menu_2`}></use>
-                                            </svg>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr className="student-card">
-                                    <td>
-                                        <a className="student-card-link">
-                                            2.
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a className="student-card-link">
-                                            <input type='checkbox' />
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            <span id="student-name">
-                                            Bayonov Faridun
-                                            </span>
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            91 234 56 78
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <a className="student-card-link" id="student-actions">
-                                            <svg className="index-card-svg">
-                                                <use href={`${icons}#menu_2`}></use>
-                                            </svg>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr className="student-card">
-                                    <td>
-                                        <a className="student-card-link">
-                                            3.
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a className="student-card-link">
-                                            <input type='checkbox' />
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            <span id="student-name">
-                                            Fayozov Javohir
-                                            </span>
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            91 234 56 78
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <a className="student-card-link" id="student-actions">
-                                            <svg className="index-card-svg">
-                                                <use href={`${icons}#menu_2`}></use>
-                                            </svg>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr className="student-card">
-                                    <td>
-                                        <a className="student-card-link">
-                                            4.
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a className="student-card-link">
-                                            <input type='checkbox' />
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            <span id="student-name">
-                                            Nematullayev Nozimjon
-                                            </span>
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            91 234 56 78
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <a className="student-card-link" id="student-actions">
-                                            <svg className="index-card-svg">
-                                                <use href={`${icons}#menu_2`}></use>
-                                            </svg>
-                                        </a>
-                                    </td>
-                                </tr>
-
-                                <tr className="student-card">
-                                    <td>
-                                        <a className="student-card-link">
-                                            5.
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a className="student-card-link">
-                                            <input type='checkbox' />
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            <span id="student-name">
-                                            Norboyev Firdavs
-                                            </span>
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            91 234 56 78
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <NavLink to="/teachers/profile/1" className="student-card-link">
-                                            4 группы
-                                        </NavLink>
-                                    </td>
-                                    <td>
-                                        <a className="student-card-link" id="student-actions">
-                                            <svg className="index-card-svg">
-                                                <use href={`${icons}#menu_2`}></use>
-                                            </svg>
-                                        </a>
-                                    </td>
-                                </tr>
-
+                                {isLoading ? (
+                                    Array(5).fill(0).map((_, index) => (
+                                        <div key={index} className="teacher-card">
+                                            <div className="teacher-card-table-wrapper">
+                                                <Skeleton height="50px" rx={10} ry={10} />
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : (!error ? studentsData.students.results.map((studentData) => (
+                                    <StudentCard studentData={studentData} key={studentData.id} />
+                                )) : ''
+                                )}
                             </tbody>
                         </table>
 
                     </div>
                 </div>
-                
+
             </div>
 
 
