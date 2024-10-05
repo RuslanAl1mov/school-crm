@@ -9,7 +9,7 @@ import GroupBlockInfo from './GroupInfoBlock/GroupInfoBlock';
 import GroupBlockInfoSkeleton from './GroupInfoBlock/GroupInfoBlockSkeleton';
 import { fetchTeacher, fetchGroupInfo } from '../../../utils/api';
 
-
+ 
 const TeacherProfile = () => {
     const { id: teacherId } = useParams(); 
     const [activeTab, setActiveTab] = useState('profile');
@@ -67,7 +67,7 @@ const TeacherProfile = () => {
     return (
         <main className="mainwn-min-size">
             <TeacherProfileHeader teacherData={teacherData} isLoading={isLoading} error={error} />
-
+            
             {/* {Вкладки преподавателя на выбор} */}
             <div className="top-tabs-bl">
                 <div className="top-tabs-container-bl">

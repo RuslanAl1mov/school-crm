@@ -82,7 +82,7 @@ const TeachersList = () => {
                   </div>
                 </div>
               ))
-            ) : (!error ? teachersData.teachers.map((teacherData) => (
+            ) : (!error ? teachersData.teachers.results.map((teacherData) => (
               <TeacherCard teacherData={teacherData} key={teacherData.id} />
             )) : ''
             )}
