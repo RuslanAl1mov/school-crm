@@ -190,7 +190,7 @@ const TeacherProfile = () => {
                                 </div>
                             ))
                         ) : (
-                            <div className="big-nothing-found-bl1">Групп нет</div>
+                            <div className="big-nothing-found-bl1">У преподавателя нет групп</div>
                         )}
                     </div>
 
@@ -202,7 +202,7 @@ const TeacherProfile = () => {
                         ) : groupInfo ? (
                             <GroupBlockInfo group={groupInfo} />
                         ) : (
-                            <GroupBlockInfoSkeleton />
+                            <div></div>
                         )}
                     </div>
                 </div>
