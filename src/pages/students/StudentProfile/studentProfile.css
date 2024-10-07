@@ -1,3 +1,7 @@
+.extrapadding {
+    margin-bottom: 50px;
+}
+
 .stud-prof-main-bl {
     display: flex;
     width: 100%;
@@ -30,8 +34,10 @@
 }
 
 .student-main-info-block {
-
-    padding: 15px 20px 25px 20px;
+    display: flex;
+    padding: 15px 20px 15px 20px;
+    flex-direction: column;
+    row-gap: 15px;
 }
 
 .student-flex-part {
@@ -93,7 +99,6 @@
 .student-info-block-separator {
     border-top: 1px solid var(--light-gray2);
     width: 100%;
-    margin-top: 15px;
 }
 
 .student-name-block {
@@ -105,7 +110,7 @@
 }
 
 .student-name {
-    font-size: 22px;
+    font-size: 21px;
     font-weight: 500;
 }
 
@@ -182,6 +187,7 @@
     fill: var(--orange);
     height: 18px;
     width: 18px;
+    padding-left: 1px;
 }
 
 .button-clock:hover {
@@ -277,7 +283,6 @@
 }
 
 .student-branches {
-    margin-top: 15px;
     display: flex;
     align-items: center;
 }
@@ -301,8 +306,14 @@
     margin-left: 5px
 }
 
-.student-add-date-block {
+.student-func-buttons {
+    display: flex;
     margin-top: 20px;
+    justify-content: space-between;
+}
+
+.student-add-date-block {
+    margin-top: 5px;
     display: flex;
 }
 
@@ -361,8 +372,15 @@
 /* Вкладки студента на выбор */
 
 .student-full-info-side {
-    flex: 1;
+    flex: 1 1 auto;
+    /* Изменяем значение flex, чтобы элемент мог адаптироваться */
+    padding-right: 40px;
+    max-width: 100%;
+    /* Ограничиваем ширину контейнера родителя */
+    overflow-x: hidden;
+    /* Прячем скролл в родителе, если появится */
 }
+
 
 .tabs-wrapper {
     display: flex;
@@ -385,7 +403,7 @@
     padding: 8px 2px;
     cursor: pointer;
     position: relative;
-    transition: color 0.3s;
+    transition: color 0.5s;
 }
 
 .tab-link:hover {
@@ -405,14 +423,424 @@
     height: 2px;
     background-color: var(--orange);
     visibility: hidden;
+
+    opacity: 0;
+
+    transition: opacity 0.5s;
 }
 
 .tab-link--active .tab-link-underline {
     visibility: visible;
+    opacity: 1;
 }
 
 .tabs-divider {
     width: 100%;
     height: 1px;
     background-color: var(--light-gray2);
+}
+
+
+.tab-container {
+    position: absolute;
+    height: 0 !important;
+    margin-top: 81px;
+    top: 0;
+    left: 0;
+
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease-in-out, transform 0.6s ease-in-out;
+    /* Плавная анимация перемещения */
+
+}
+
+.tab-container--active {
+    position: relative;
+    width: 100%;
+    height: auto;
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/* Карта группы студента */
+
+.student-groups-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    column-gap: 20px;
+    row-gap: 20px;
+
+}
+
+.student-group-card {
+    background-color: var(--white);
+    box-shadow: var(--card-box-shadow);
+    width: 45%;
+    min-width: 430px;
+}
+
+.student-group-card-content {
+    padding: 20px 20px 8px 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+.student-group-info-flex {
+    display: flex;
+}
+
+.student-group-info-left {
+    flex: 1
+}
+
+.group-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.group-name-block {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+
+.group-name-gray-bg {
+    display: flex;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 4px 7px;
+    background-color: var(--light-gray);
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.group-name-darkgray-bg {
+    background-color: var(--light-gray2);
+}
+
+.group-course-name {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.group-teacher-name {
+    font-size: 11px;
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+.student-group-info-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.group-exist-date {
+    font-size: 11px;
+    color: var(--gray);
+    font-weight: 500;
+}
+
+.student-group-flex-info {
+    flex: 1;
+}
+
+.student-group-info-text {
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.student-group-info-text span {
+    color: var(--gray);
+}
+
+.button-pause {
+    border: 1px solid var(--blue1);
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+.button-pause svg {
+    fill: var(--blue1);
+    width: 18px;
+    height: 18px;
+}
+
+.button-pause:hover {
+    background-color: var(--blue1);
+}
+
+.button-pause:hover svg {
+    fill: var(--white);
+}
+
+.title-text {
+    font-size: 21px;
+    font-weight: 450;
+    margin-top: 10px;
+}
+
+
+/* Блок статуса баланса за месяц */
+
+.month-balance {
+    width: 100%;
+    margin-top: 10px;
+    background-color: var(--white);
+    box-shadow: var(--card-box-shadow);
+}
+
+.month-balance-content {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    column-gap: 20px;
+}
+
+.balance-block {
+    height: 50px;
+    width: 100px;
+    padding: 7px 5px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.positive-balance {
+    border: 1px solid var(--green);
+    color: var(--green);
+}
+
+.negative-balance {
+    border: 1px solid var(--red);
+    color: var(--red);
+}
+
+.month-balance-date {
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+}
+
+.month-balance-sum {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 450;
+}
+
+
+/* Блок "Платежи" */
+
+.student-payments {
+    margin-top: 10px;
+    width: 100%;
+    background-color: var(--white);
+    box-shadow: var(--card-box-shadow);
+}
+
+.student-payments-content {
+    padding: 20px;
+}
+
+.payments-table {
+    width: 100%;
+    border: 0;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.payment-table-tr--grey {
+    background-color: var(--light-gray);
+}
+
+.payments-table-th {
+    font-weight: 600;
+    text-align: start;
+    padding: 10px;
+}
+
+.payment-table-td {
+    text-align: start;
+    padding: 12px 10px;
+    border: 0;
+}
+
+
+.td-payment-staus-block {
+    display: flex;
+}
+
+.td-payment-staus {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 6px;
+    color: var(--white);
+    background-color: var(--gray);
+    border-radius: 5px;
+}
+
+.td-payment-staus--positive {
+    background-color: var(--green);
+    color: white
+}
+
+.td-payment-sum {
+    font-size: 16px;
+}
+
+.td-payment-sum--positive {
+    color: var(--green);
+}
+
+.td-payment-comment-grey {
+    font-size: 12px;
+    color: var(--gray);
+    font-weight: 500;
+    line-height: 22px;
+}
+
+.td-payment-comment {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 22px;
+}
+
+.multibutton {
+    display: flex;
+    border: 1px solid var(--gray);
+    border-radius: 15px;
+    font-size: 11px;
+}
+
+.multibutton-block-flex {
+    display: flex;
+}
+
+.multibutton-block {
+    display: flex;
+    padding: 4px 0 4px 10px;
+    column-gap: 10px;
+    border-radius: 15px 0 0 15px;
+    cursor: pointer;
+}
+
+.multibutton-block-text {
+    padding-right: 10px;
+}
+
+.multibutton-block svg {
+    height: 15px;
+    width: 15px;
+}
+
+.triangle-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid var(--gray);
+    padding: 0 10px 0 8px;
+    border-radius: 0 15px 15px 0;
+    cursor: pointer;
+}
+
+.multibutton-triangle {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid var(--black);
+    transform: scale(-1);
+}
+
+.payment-multibutton-table-td {
+    display: flex;
+    justify-content: center;
+}
+
+.multibutton-blue {
+    color: var(--blue1);
+
+    .multibutton {
+        border: 1px solid var(--blue1);        
+    }
+
+    .multibutton-block:hover {
+        background-color: var(--blue1);
+        color: var(--white);        
+    }
+
+    .multibutton-block:hover svg{
+        fill: var(--white);
+    }
+
+    svg {
+        fill: var(--blue1);
+    }
+    
+    .triangle-block {
+        border-left: 1px solid var(--blue1);
+    }
+
+    .triangle-block:hover {
+        background-color: var(--blue1);
+    }
+
+    .triangle-block:hover .multibutton-triangle {
+        border-bottom: 4px solid var(--white);
+    }
+    
+    .multibutton-triangle {
+        border-bottom-color: var(--blue1);
+    }
+}
+
+.multibutton-green {
+    color: var(--green);
+
+    .multibutton {
+        border: 1px solid var(--green);        
+    }
+
+    .multibutton-block:hover {
+        background-color: var(--green);
+        color: var(--white);        
+    }
+
+    .multibutton-block:hover svg{
+        fill: var(--white);
+    }
+
+    svg {
+        fill: var(--green);
+    }
+    
+    .triangle-block {
+        border-left: 1px solid var(--green);
+    }
+
+    .triangle-block:hover {
+        background-color: var(--green);
+    }
+
+    .triangle-block:hover .multibutton-triangle {
+        border-bottom: 4px solid var(--white);
+    }
+    
+    .multibutton-triangle {
+        border-bottom-color: var(--green);
+    }
 }
