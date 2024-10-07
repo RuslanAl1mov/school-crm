@@ -208,10 +208,10 @@ const TeacherProfile = () => {
                 </div>
             </div>
 
-            <div className={`main-big-tab-container ${activeTab === 'history' ? 'main-big-tab-container--active' : ''}`}>
+            <div className={`main-big-tab-container main-big-container-margin ${activeTab === 'history' ? 'main-big-tab-container--active' : ''}`}>
                 <div className="big-nothing-found-bl1">Здесь пока ничего нет</div>
             </div>
-            <div className={`main-big-tab-container ${activeTab === 'salary' ? 'main-big-tab-container--active' : ''}`}>
+            <div className={`main-big-tab-container main-big-container-margin ${activeTab === 'salary' ? 'main-big-tab-container--active' : ''}`}>
                 <div className="big-nothing-found-bl1">Здесь пока ничего нет</div>
             </div>
         </main>

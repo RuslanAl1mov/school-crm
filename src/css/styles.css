@@ -58,7 +58,10 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    height: auto;
+    min-height: 100%;
     margin: 0;
+    padding: 0;
 
     background-color: var(--main-widndow-gray);
 }
@@ -186,7 +189,6 @@ body {
 .main-big-tab-container {
     position: absolute; /* Абсолютное позиционирование */
     height: 0 !important;
-    margin-top: 81px;
     top: 0;
     left: 0;
 
@@ -200,7 +202,7 @@ body {
 .main-big-tab-container--active {
     position: relative;
     width: 100%;
-    height: auto;
+    height: auto !important;
     transform: translateY(0); /* Плавное перемещение */
     visibility: visible;
     opacity: 1;
@@ -209,6 +211,7 @@ body {
 
 /* Блок "Здесь пока ничего нет" */
 .big-nothing-found-bl1 {
+    margin-top: 20px;
     width: calc(100% - 40px);
     min-height: 125px;
     display: flex;
