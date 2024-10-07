@@ -19,7 +19,7 @@ export const fetchTeacher = async (teacherId) => {
 export const fetchGroupInfo = async (teacherId, groupId) => {
     const response = await fetch(`https://api.woow.uz/api/v1.0/teachers/profile/${teacherId}/group/${groupId}`);
     if (!response.ok) {
-        throw new Error('Ошибка при загрузке информации о группе');
+        throw new Error('Ошибка при загрузке информации о группе преподавателя');
     }
     return await response.json();
 };
@@ -31,6 +31,14 @@ export const fetchStudentsList = async () => {
     const response = await fetch(`https://api.woow.uz/api/v1.0/students/list`);
     if (!response.ok) {
         throw new Error('Ошибка при загрузке списка студентов');
+    }
+    return await response.json();
+};
+
+export const fetchStudent = async (studentId) => {
+    const response = await fetch(`https://api.woow.uz/api/v1.0/students/profile/${studentId}`);
+    if (!response.ok) {
+        throw new Error('Ошибка при загрузке информации о студенте');
     }
     return await response.json();
 };

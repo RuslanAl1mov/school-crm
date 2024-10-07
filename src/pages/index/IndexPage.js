@@ -48,20 +48,20 @@ const IndexPage = () => {
         <div className="simple-flex-wrap-bl">
 
           <div className="index-card-bl">
-            <NavLink className="index-card-bl-link" to="/students">
+            <NavLink className="index-card-bl-link" to="/students/list">
               <div className="index-card-content-bl">
                 <svg className="index-card-svg">
                   <use href={`${icons}#student`}></use>
                 </svg>
                 <p className="index-card-bl-title">Активные студенты</p>
-                <p className="index-card-numinf-text">{isLoading ? (
+                <div className="index-card-numinf-text">{isLoading ? (
                   <div className="skeleton-list">
-                      <div style={{ padding: '30%', padding: '0 20px' }}>  {}
+                    <div style={{ padding: '30%', padding: '0 20px' }}>  { }
 
-                    <Skeleton />
+                      <Skeleton />
                     </div>
                   </div>
-                ) : (data.activeStudents)}</p>
+                ) : (data.activeStudents)}</div>
               </div>
             </NavLink>
           </div>
@@ -73,16 +73,16 @@ const IndexPage = () => {
                   <use href={`${icons}#group`}></use>
                 </svg>
                 <p className="index-card-bl-title">Группы</p>
-                <p className="index-card-numinf-text">
-                {isLoading ? (
-                  <div className="skeleton-list">
-                      <div style={{ padding: '30%', padding: '0 20px' }}>  {}
+                <div className="index-card-numinf-text">
+                  {isLoading ? (
+                    <div className="skeleton-list">
+                      <div style={{ padding: '30%', padding: '0 20px' }}>  { }
 
-                    <Skeleton />
+                        <Skeleton />
+                      </div>
                     </div>
-                  </div>
-                ) : (data.activeGroups)}
-                </p>
+                  ) : (data.activeGroups)}
+                </div>
               </div>
             </NavLink>
           </div>
@@ -94,14 +94,15 @@ const IndexPage = () => {
                   <use href={`${icons}#teacher`}></use>
                 </svg>
                 <p className="index-card-bl-title">Преподаватели</p>
-                <p className="index-card-numinf-text">{isLoading ? (
+                <div className="index-card-numinf-text">{isLoading ? (
                   <div className="skeleton-list">
-                      <div style={{ padding: '30%', padding: '0 20px' }}>  {}
+                    <div style={{ padding: '30%', padding: '0 20px' }}>  { }
 
-                    <Skeleton />
+                      <Skeleton />
                     </div>
                   </div>
-                ) : (data.activeTeachers)}</p>
+                ) : (data.activeTeachers)}
+                </div>
               </div>
             </NavLink>
           </div>
@@ -113,14 +114,15 @@ const IndexPage = () => {
                   <use href={`${icons}#list_catalog`}></use>
                 </svg>
                 <p className="index-card-bl-title">Курсы</p>
-                <p className="index-card-numinf-text">{isLoading ? (
+                <div className="index-card-numinf-text">{isLoading ? (
                   <div className="skeleton-list">
-                      <div style={{ padding: '30%', padding: '0 20px' }}>  {}
+                    <div style={{ padding: '30%', padding: '0 20px' }}>  { }
 
-                    <Skeleton />
+                      <Skeleton />
                     </div>
                   </div>
-                ) : (data.activeCourses)}</p>
+                ) : (data.activeCourses)}
+                </div>
               </div>
             </NavLink>
           </div>
