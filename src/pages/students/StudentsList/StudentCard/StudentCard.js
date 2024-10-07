@@ -26,25 +26,27 @@ const StudentCard = ({ studentData }) => {
             </td>
             <td>
                 <NavLink to={`/students/profile/${studentData.id}`} className="student-card-link">
-                    {studentData.phone_number}
+                    {studentData.phone_number ? studentData.phone_number : ''}
                 </NavLink>
             </td>
             <td>
                 <NavLink to={`/students/profile/${studentData.id}`} className="student-card-link">
+                    {studentData.group_name ? (
                     <div className="gr-inf-cnt-gr-num">{studentData.group_name}</div>
-                    &nbsp;{studentData.course_name}
+                    ) : ''}
+                    &nbsp;{studentData.course_name ? studentData.course_name : 'Не учавствует в группе'}
                 </NavLink>
             </td>
             <td>
                 <NavLink to={`/students/profile/${studentData.id}`} className="student-card-link">
-                    {studentData.teacher_name}
+                    {studentData.teacher_name ? studentData.teacher_name : ''}
                 </NavLink>
             </td>
             <td>
                 <NavLink to={`/students/profile/${studentData.id}`} className="student-card-link">
-                    {studentData.start_date}
+                    {studentData.start_date ? studentData.start_date : ''}
                     <br></br>
-                    {studentData.end_date}
+                    {studentData.end_date ? studentData.end_date : ''}
                 </NavLink>
             </td>
             <td>
