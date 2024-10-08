@@ -48,6 +48,26 @@ const IndexPage = () => {
         <div className="simple-flex-wrap-bl">
 
           <div className="index-card-bl">
+            <NavLink className="index-card-bl-link" to="/teachers/list">
+              <div className="index-card-content-bl">
+                <svg className="index-card-svg">
+                  <use href={`${icons}#teacher`}></use>
+                </svg>
+                <p className="index-card-bl-title">Преподаватели</p>
+                <div className="index-card-numinf-text">{isLoading ? (
+                  <div className="skeleton-list">
+                    <div style={{ padding: '30%', padding: '0 20px' }}>  { }
+
+                      <Skeleton />
+                    </div>
+                  </div>
+                ) : (data.activeTeachers)}
+                </div>
+              </div>
+            </NavLink>
+          </div>
+
+          <div className="index-card-bl">
             <NavLink className="index-card-bl-link" to="/students/list">
               <div className="index-card-content-bl">
                 <svg className="index-card-svg">
@@ -82,26 +102,6 @@ const IndexPage = () => {
                       </div>
                     </div>
                   ) : (data.activeGroups)}
-                </div>
-              </div>
-            </NavLink>
-          </div>
-
-          <div className="index-card-bl">
-            <NavLink className="index-card-bl-link" to="/teachers/list">
-              <div className="index-card-content-bl">
-                <svg className="index-card-svg">
-                  <use href={`${icons}#teacher`}></use>
-                </svg>
-                <p className="index-card-bl-title">Преподаватели</p>
-                <div className="index-card-numinf-text">{isLoading ? (
-                  <div className="skeleton-list">
-                    <div style={{ padding: '30%', padding: '0 20px' }}>  { }
-
-                      <Skeleton />
-                    </div>
-                  </div>
-                ) : (data.activeTeachers)}
                 </div>
               </div>
             </NavLink>
