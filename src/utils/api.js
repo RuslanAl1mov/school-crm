@@ -27,8 +27,8 @@ export const fetchGroupInfo = async (teacherId, groupId) => {
 
 // Students API
 
-export const fetchStudentsList = async () => {
-    const response = await fetch(`https://api.woow.uz/api/v1.0/students/list`);
+export const fetchStudentsList = async (page = 1, limit=10) => {
+    const response = await fetch(`https://api.woow.uz/api/v1.0/students/list/?page=${page}&page_size=${limit}`);
     if (!response.ok) {
         throw new Error('Ошибка при загрузке списка студентов');
     }

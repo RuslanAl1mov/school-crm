@@ -2,13 +2,13 @@ import icons from "./../../../../img/icons/icons.svg";
 import { NavLink } from 'react-router-dom';
 
 
-const StudentCard = ({ studentData }) => {
+const StudentCard = ({ studentData, studentNumber }) => {
     return (
         <tr className="student-card">
             <td>
                 <NavLink to={`/students/profile/${studentData.id}`} className="student-card-link">
                     <div className="student-card-link-num">
-                        1.
+                        {studentNumber}
                     </div>
                 </NavLink>
             </td>

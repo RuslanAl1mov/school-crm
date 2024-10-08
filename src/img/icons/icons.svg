@@ -37,9 +37,23 @@
         <path d="M112.814 0L91.566 21.178l181.946 182.54-181.946 182.54 21.248 21.178 203.055-203.718z"/>
     </symbol>
 
+    <symbol id="double-chevron-right" xmlns="http://www.w3.org/2000/svg" viewBox="11 14 39 39">
+        <polygon
+            points="30.293,15.707 46.586,32 30.293,48.293 31.854,49.707 49,32.707 49,31.293 31.854,14.293 	" />
+        <polygon
+            points="34,31.293 16.854,14.293 15.366,15.707 31.623,32 15.312,48.293 16.863,49.707 34,32.707 	" />
+    </symbol>
+
     <symbol id="chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 407.436 407.436"
         xml:space="preserve">
         <path d="M315.869 21.178L294.621 0 91.566 203.718l203.055 203.718 21.248-21.178-181.945-182.54z"/>
+    </symbol>
+
+    <symbol id="double-chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="11 14 39 39">
+        <polygon
+            points="33.643,15.643 32.114,14.229 15,31.229 15,32.643 32.114,49.643 33.585,48.229 17.321,31.936 	" />
+        <polygon
+            points="47.114,14.229 30,31.229 30,32.643 47.114,49.643 48.585,48.229 32.321,31.936 48.571,15.643 	" />
     </symbol>
 
     <symbol id="arrow-down" viewBox="0 0 24 25" xmlns="http://www.w3.org/2000/svg">

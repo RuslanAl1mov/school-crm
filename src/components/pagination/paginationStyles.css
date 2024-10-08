@@ -1,0 +1,47 @@
+/* Пагинация */
+.pagination-block {
+    display: flex;
+}
+
+.pagination-list {
+    padding: 20px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+}
+
+.pagination-svg {
+    height: 13px;
+    width: 13px;
+}
+
+
+.pagination-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+    padding: 7px 12px;
+    text-align: center;
+    border-radius: 100%;
+    border: 1px solid rgba(0,0,0,0);
+    transition: border-color 0.5s, color 0.5s, fill 0.5s;
+}
+
+.pagination-link:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+    fill: var(--orange)
+}
+
+.pagination-link--active {
+    border-color: var(--orange);
+    color: var(--orange);
+    fill: var(--orange)
+}
+
+.pagination-arrow-link {
+    padding: 8px 8px;
+}
