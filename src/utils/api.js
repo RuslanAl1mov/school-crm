@@ -1,7 +1,7 @@
 // API Преподавателей
 
-export const fetchTeachersList = async () => {
-    const response = await fetch(`https://api.woow.uz/api/v1.0/teachers/list/`);
+export const fetchTeachersList = async (page = 1, limit = 50) => {
+    const response = await fetch(`https://api.woow.uz/api/v1.0/teachers/list/?page=${page}&page_size=${limit}`);
     if (!response.ok) {
         throw new Error('Ошибка при загрузке списка преподавателей');
     }

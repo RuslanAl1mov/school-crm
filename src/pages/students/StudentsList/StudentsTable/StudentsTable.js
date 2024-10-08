@@ -6,13 +6,13 @@ import Pagination from "../../../../components/pagination/Pagination";
 import StudentCardSkeleton from "../StudentCard/StudentCardSkeleton";
 
 
-const StudentsTable = ({ setTotalStudents }) => {
+const StudentsTable = ({ setTotalStudents, limit }) => {
     const [studentsData, setStudentsData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [limit] = useState(3);
+    
 
     // Функция загрузки данных студентов
     const loadStudents = async () => {

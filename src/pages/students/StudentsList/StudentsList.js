@@ -3,17 +3,15 @@ import React, { useState } from "react";
 import StudentAddModalForm from "./studentAddModalForm/StudentAddModalForm";
 import StudentsTable from "./StudentsTable/StudentsTable";
 
-// Основной компонент страницы студентов
 const StudentsList = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [totalStudents, setTotalStudents] = useState(0);
+    const [limit] = useState(10); // Кол-во элементов в списке
 
-    // Функция для открытия модального окна
     const handleOpenModal = () => {
         setIsModalOpen(true);
     };
 
-    // Функция для закрытия модального окна
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
@@ -32,12 +30,10 @@ const StudentsList = () => {
                     </div>
                 </div>
 
-                {/* Таблица студентов с пагинацией */}
-                <StudentsTable setTotalStudents={setTotalStudents}/>
+                <StudentsTable setTotalStudents={setTotalStudents} limit={limit}/>
 
             </div>
 
-            {/* Модальное окно для добавления студента */}
             <StudentAddModalForm isOpen={isModalOpen} onClose={handleCloseModal} />
         </main>
     );

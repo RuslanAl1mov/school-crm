@@ -29,21 +29,20 @@ const TeachersList = () => {
     setIsModalOpen(false);
   };
 
+  const loadTeachersData = async () => {
+    try {
+      const teachersData = await fetchTeachersList();
+      setTeachersData(teachersData);
+    } catch (error) {
+      setError(error.message);
+      console.log(error)
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   // Загружаем данные при монтировании компонента
   useEffect(() => {
-    const loadTeachersData = async () => {
-      try {
-        const teachersData = await fetchTeachersList();
-        setTeachersData(teachersData);
-      } catch (error) {
-        setError(error.message);
-        console.log(error)
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
     loadTeachersData();
   }, []);
 
@@ -91,7 +90,7 @@ const TeachersList = () => {
 
       </div>
 
-      <TeacherAddModalForm isOpen={isModalOpen} onClose={handleCloseModal} />
+      <TeacherAddModalForm isOpen={isModalOpen} onClose={handleCloseModal} loadTeachersData={loadTeachersData} />
     </main>
   );
 };
