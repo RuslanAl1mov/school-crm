@@ -73,6 +73,12 @@ body {
     flex-direction: row;
 }
 
+.Toastify__toast-container {
+    z-index: 9999;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
 /* Окно изменяющегося контента */
 .mainwn-min-size {
     min-height: calc(100vh - 110px);

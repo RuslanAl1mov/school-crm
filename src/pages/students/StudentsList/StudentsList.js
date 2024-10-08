@@ -7,7 +7,6 @@ import StudentsTable from "./StudentsTable/StudentsTable";
 const StudentsList = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [totalStudents, setTotalStudents] = useState(0);
-    const [limit] = useState(10); // Можно сделать изменяемым
 
     // Функция для открытия модального окна
     const handleOpenModal = () => {
@@ -29,13 +28,12 @@ const StudentsList = () => {
                     </div>
 
                     <div className="mn-title-btn-bl">
-                        {/* Кнопка для открытия модального окна */}
                         <a onClick={handleOpenModal}>Добавить</a>
                     </div>
                 </div>
 
                 {/* Таблица студентов с пагинацией */}
-                <StudentsTable />
+                <StudentsTable setTotalStudents={setTotalStudents}/>
 
             </div>
 

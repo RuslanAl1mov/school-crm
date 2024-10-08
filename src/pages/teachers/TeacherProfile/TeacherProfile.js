@@ -97,7 +97,7 @@ const TeacherProfile = () => {
                                 <div className="pr-prf-mn-bl1">
                                     <div className="pr-prf-mn-bl1-img-bl">
                                         {teacherData?.photo ? (
-                                            <img src={teacherData.photo} alt="Фото преподавателя" className="prf-mn-bl1-img" />
+                                            <img src={teacherData.photo} alt="Фото преподавателя" className="prf-mn-bl1-img prf-mn-bl1-img--active" />
                                         ) : (
                                             <div className="prf-mn-bl1-img">
                                                 <svg>

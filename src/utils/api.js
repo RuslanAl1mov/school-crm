@@ -8,6 +8,20 @@ export const fetchTeachersList = async () => {
     return await response.json();
 };
 
+export const createTeacher = async (formData) => {
+    const response = await fetch('https://api.woow.uz/api/v1.0/teachers/create/', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+        },
+        body: formData,
+    });
+    if (!response.ok) {
+        throw new Error('Ошибка при добавлении преподавателя');
+    }
+    return await response.json();
+}
+
 export const fetchTeacher = async (teacherId) => {
     const response = await fetch(`https://api.woow.uz/api/v1.0/teachers/profile/${teacherId}`);
     if (!response.ok) {
@@ -27,7 +41,7 @@ export const fetchGroupInfo = async (teacherId, groupId) => {
 
 // Students API
 
-export const fetchStudentsList = async (page = 1, limit=10) => {
+export const fetchStudentsList = async (page = 1, limit = 10) => {
     const response = await fetch(`https://api.woow.uz/api/v1.0/students/list/?page=${page}&page_size=${limit}`);
     if (!response.ok) {
         throw new Error('Ошибка при загрузке списка студентов');

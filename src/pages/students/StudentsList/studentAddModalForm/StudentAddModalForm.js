@@ -6,30 +6,31 @@ const TeacherAddModalForm = ({ isOpen, onClose }) => {
   const [name, setName] = useState('');
   const [dob, setDob] = useState('');
   const [gender, setGender] = useState('');
-  const [photo, setPhoto] = useState(null);
-  const [password, setPassword] = useState(''); // Стейт для пароля
-  const [showPassword, setShowPassword] = useState(false); // Стейт для отображения пароля
-  const [showPasswordField, setShowPasswordField] = useState(false); // Стейт для отображения поля пароля
+  const [comments, setComments] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordField, setShowPasswordField] = useState(false);
+  const [showAddToGroupField, setShowAddToGroupField] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ phone, name, dob, gender, photo, password });
-    // Добавить дальнейшую обработку данных, валидацию и отправку
+    console.log({ phone, name, dob, gender, comments, password });
   };
 
-  // Обработчик клика по overlay для закрытия модального окна
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
-  // Показать поле для ввода пароля при нажатии на ссылку
   const handleSetPasswordClick = () => {
     setShowPasswordField(true);
   };
 
-  // Показать/скрыть пароль при нажатии/отпускании кнопки
+  const handleAddStudentoGroupClick = () => {
+    setShowAddToGroupField(true);
+  }
+
   const handlePasswordVisibility = (isVisible) => {
     setShowPassword(isVisible);
   };
@@ -40,11 +41,12 @@ const TeacherAddModalForm = ({ isOpen, onClose }) => {
     <div className="modal-overlay" onClick={handleOverlayClick}>
       <div className="modal-content">
         <div className="modal-header">
-          <h5>Добавить нового учителя</h5>
+          <h5>Добавить нового студента</h5>
           <button type="button" className="close-btn" onClick={onClose}>x</button>
         </div>
         <div className="modal-body">
           <form onSubmit={handleSubmit}>
+
             {/* Поле для ввода телефона */}
             <div className="form-group">
               <label htmlFor="phone">Телефон</label>
@@ -116,16 +118,19 @@ const TeacherAddModalForm = ({ isOpen, onClose }) => {
               </div>
             </div>
 
-            {/* Поле для загрузки фото */}
+            {/* Поле для ввода комментария */}
             <div className="form-group">
-              <label htmlFor="photo">Фото</label>
-              <input
-                type="file"
-                id="photo"
-                className="form-control-file"
-                onChange={(e) => setPhoto(e.target.files[0])}
+              <label htmlFor="name">Комментарии</label>
+              <textarea
+                type="text"
+                id="comments"
+                value={comments}
+                className="form-control form-control-textarea"
+                onChange={(e) => setComments(e.target.value)}
+                placeholder="Комментарии"
               />
             </div>
+
 
             {/* Ссылка для установки пароля */}
             <div className="">
@@ -166,13 +171,33 @@ const TeacherAddModalForm = ({ isOpen, onClose }) => {
                       className="bi bi-eye"
                       viewBox="0 0 16 16"
                     >
-                      <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zm-8 4a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                      <path d="M8 5a3 3 0 0 0-2.847 4.104A3.5 3.5 0 0 0 8 5z"/>
+                      <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zm-8 4a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                      <path d="M8 5a3 3 0 0 0-2.847 4.104A3.5 3.5 0 0 0 8 5z" />
                     </svg>
                   </button>
                 </div>
               </div>
             )}
+
+            {/* Ссылка для добавления студента в группу */}
+            <div className="set-password-link-block">
+              {!showAddToGroupField && (
+                <a href="#" onClick={handleAddStudentoGroupClick} className="set-password-link">
+                  + Добавить в группу
+                </a>
+              )}
+            </div>
+
+            {/* Поля добавлния студента в группу */}
+            {showAddToGroupField && (
+              <div className="form-group">
+                <label htmlFor="password">Группа</label>
+                <div className="form-control search-group-form">
+                  <input type="text" placeholder="Выберите группу"/>
+                </div>
+              </div>
+            )}
+
 
             {/* Кнопка отправки формы */}
             <div className="form-group text-right">

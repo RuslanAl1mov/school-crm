@@ -1,5 +1,9 @@
+import { createTeacher } from '../../../../utils/api';
 import './style.css';
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const TeachersRightModalForm = ({ isOpen, onClose }) => {
   const [phone, setPhone] = useState('');
@@ -7,14 +11,47 @@ const TeachersRightModalForm = ({ isOpen, onClose }) => {
   const [dob, setDob] = useState('');
   const [gender, setGender] = useState('');
   const [photo, setPhoto] = useState(null);
-  const [password, setPassword] = useState(''); // Стейт для пароля
-  const [showPassword, setShowPassword] = useState(false); // Стейт для отображения пароля
-  const [showPasswordField, setShowPasswordField] = useState(false); // Стейт для отображения поля пароля
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPasswordField, setShowPasswordField] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+
     e.preventDefault();
-    console.log({ phone, name, dob, gender, photo, password });
-    // Добавить дальнейшую обработку данных, валидацию и отправку
+
+    
+    const formData = new FormData();
+
+
+    console.log(photo);
+    formData.append('phone_number', phone);
+    formData.append('fullname', name);
+    formData.append('birth_date', dob);
+    formData.append('gender', gender);
+    formData.append('role', 'teacher');
+    
+    if (photo) {
+      formData.append('photo', photo);
+    }
+
+    // Если пароль установлен, добавляем его
+    if (password) {
+      formData.append('password', password);
+    }
+
+    // Логирование данных для проверки
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
+    try {
+      await createTeacher(formData);
+      onClose(); // Закрываем модальное окно
+      toast.success('Преподаватель успешно добавлен!');
+    } catch (error) {
+      console.log('Ошибка:', error);
+      toast.error('Что-то пошло не так при сохранении преподавателя...');
+    }
   };
 
   // Обработчик клика по overlay для закрытия модального окна
@@ -37,7 +74,9 @@ const TeachersRightModalForm = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
+
     <div className="modal-overlay" onClick={handleOverlayClick}>
+ 
       <div className="modal-content">
         <div className="modal-header">
           <h5>Добавить нового учителя</h5>
@@ -97,8 +136,8 @@ const TeachersRightModalForm = ({ isOpen, onClose }) => {
                   <input
                     type="radio"
                     name="gender"
-                    value="m"
-                    checked={gender === 'm'}
+                    value="M"
+                    checked={gender === 'M'}
                     onChange={(e) => setGender(e.target.value)}
                   />
                   Мужчина
@@ -107,8 +146,8 @@ const TeachersRightModalForm = ({ isOpen, onClose }) => {
                   <input
                     type="radio"
                     name="gender"
-                    value="f"
-                    checked={gender === 'f'}
+                    value="W"
+                    checked={gender === 'W'}
                     onChange={(e) => setGender(e.target.value)}
                   />
                   Женщина
@@ -166,8 +205,8 @@ const TeachersRightModalForm = ({ isOpen, onClose }) => {
                       className="bi bi-eye"
                       viewBox="0 0 16 16"
                     >
-                      <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zm-8 4a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                      <path d="M8 5a3 3 0 0 0-2.847 4.104A3.5 3.5 0 0 0 8 5z"/>
+                      <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zm-8 4a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                      <path d="M8 5a3 3 0 0 0-2.847 4.104A3.5 3.5 0 0 0 8 5z" />
                     </svg>
                   </button>
                 </div>

@@ -1,7 +1,7 @@
 import Skeleton from "../../../../components/loader/Skeleton";
 
 
-const StudentCardSkeleton = ({ studentData, studentNumber }) => {
+const StudentCardSkeleton = () => {
     return (
         <tr className="student-card">
             <td>

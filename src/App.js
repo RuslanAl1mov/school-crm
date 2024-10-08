@@ -1,6 +1,7 @@
 import "./css/styles.css";
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import Header from "./components/header/Header";
 import SideMenu from "./components/sidemenu/SideMenu";
@@ -30,8 +31,8 @@ function App() {
           <Route path="/students/profile/:id" element={<StudentProfile />} />
         </Routes>
  
-
       </Router>
+      <ToastContainer />
     </div>
   );
 }
