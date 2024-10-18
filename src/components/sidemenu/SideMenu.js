@@ -39,14 +39,14 @@ const SideMenu = () => {
                     </div>
 
                     <div className="side-menu-nav-item-bl">
-                        <NavLink to="/groups"
+                        <NavLink to="/groups/list"
                             className={({ isActive }) => isActive ? 'side-menu-nav-item-link--active' : ''}>
-                            <div className={`side-mn-bl-upline ${location.pathname === '/groups' ? 'side-mn-bl-upline--active' : ''}`}></div>
+                            <div className={`side-mn-bl-upline ${location.pathname === '/groups/list' ? 'side-mn-bl-upline--active' : ''}`}></div>
                             <div className="side-menu-svg-bl">
-                                <svg className={`side-menu-svg ${location.pathname === '/groups' ? 'side-menu-svg--active' : ''}`}>
+                                <svg className={`side-menu-svg ${location.pathname === '/groups/list' ? 'side-menu-svg--active' : ''}`}>
                                     <use href={`${icons}#group`}></use>
                                 </svg>
-                                <span className={`side-menu-svg-bl-title ${location.pathname === '/groups' ? 'side-menu-svg-bl-title--active' : ''}`}>Группы</span>
+                                <span className={`side-menu-svg-bl-title ${location.pathname === '/groups/list' ? 'side-menu-svg-bl-title--active' : ''}`}>Группы</span>
                             </div>
                         </NavLink>
                     </div>

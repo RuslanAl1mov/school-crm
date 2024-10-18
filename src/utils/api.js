@@ -56,3 +56,22 @@ export const fetchStudent = async (studentId) => {
     }
     return await response.json();
 };
+
+
+// Groups API
+
+export const fetchGroupsList = async (page = 1, limit = 10) => {
+    const response = await fetch(`https://api.woow.uz/api/v1.0/groups/list/?page=${page}&page_size=${limit}`);
+    if (!response.ok) {
+        throw new Error('Ошибка при загрузке списка групп');
+    }
+    return await response.json();
+};
+
+export const fetchGroup = async (studentId) => {
+    const response = await fetch(`https://api.woow.uz/api/v1.0/groups/profile/${studentId}`);
+    if (!response.ok) {
+        throw new Error('Ошибка при загрузке информации о группе');
+    }
+    return await response.json();
+};

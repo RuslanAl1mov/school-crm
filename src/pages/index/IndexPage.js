@@ -87,7 +87,7 @@ const IndexPage = () => {
           </div>
 
           <div className="index-card-bl">
-            <NavLink className="index-card-bl-link" to="/groups">
+            <NavLink className="index-card-bl-link" to="/groups/list">
               <div className="index-card-content-bl">
                 <svg className="index-card-svg">
                   <use href={`${icons}#group`}></use>

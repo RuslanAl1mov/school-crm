@@ -12,7 +12,7 @@ const StudentsTable = ({ setTotalStudents, limit }) => {
     const [error, setError] = useState(null);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    
+
 
     // Функция загрузки данных студентов
     const loadStudents = async () => {
@@ -54,15 +54,14 @@ const StudentsTable = ({ setTotalStudents, limit }) => {
                             <th>Баланс</th>
                             <th></th>
                         </tr>
-
-                        {studentsData && studentsData.students.results.map(() => (
-                            <StudentCardSkeleton />
+                        {[...Array(5)].map((_, index) => (
+                            <StudentCardSkeleton key={index} />
                         ))}
                     </tbody>
                 </table>
             </div>
         )
-        ;
+            ;
     }
 
     if (error) {

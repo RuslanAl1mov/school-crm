@@ -12,6 +12,7 @@ import ScrollToTop from "./utils/scrollToTop";
 import TeacherProfile from "./pages/teachers/TeacherProfile/TeacherProfile";
 import StudentsList from "./pages/students/StudentsList/StudentsList";
 import StudentProfile from "./pages/students/StudentProfile/StudentProfile";
+import GroupsList from "./pages/groups/GroupsList/GroupsList";
 
 function App() {
   return (
@@ -29,8 +30,9 @@ function App() {
           <Route path="/teachers/profile/:id" element={<TeacherProfile />} />
           <Route path="/students/list" element={<StudentsList />} />
           <Route path="/students/profile/:id" element={<StudentProfile />} />
+          <Route path="/groups/list" element={<GroupsList />} />
         </Routes>
- 
+
       </Router>
       <ToastContainer />
     </div>
