@@ -1,1 +1,331 @@
 /* GroupProfileStyle.css */
+
+.horizontal-separated-windows-30to70 {
+    display: flex;
+    column-gap: 40px;
+    padding-right: 40px;
+}
+
+.left-window-part-30 {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    font-size: 12.8px;
+    row-gap: 30px;
+}
+
+.group-info-block {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    box-shadow: var(--card-box-shadow);
+    padding: 20px;
+    row-gap: 20px;
+}
+
+.about-group-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.group-data-block {
+    display: flex;
+}
+
+.group-main-info-block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    line-height: 23px;
+}
+
+.group-main-info-text {}
+
+.group-main-info-text span {
+    font-weight: 600;
+}
+
+.group-main-info-id-field {
+    font-size: 13px;
+    color: var(--gray);
+    padding-top: 10px;
+}
+
+.group-action-buttons-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.action-button {
+    height: 33px;
+    width: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 10px;
+    border-radius: 100%;
+    cursor: pointer;
+
+    transition: background-color 0.5s;
+}
+
+.button-orange {
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    fill: var(--orange);
+
+    svg {
+        width: 18px;
+        height: 18px
+    }
+}
+
+.button-orange:hover {
+    background-color: var(--orange);
+    color: var(--white);
+    fill: var(--white);
+}
+
+.button-yellow {
+    border: 1px solid var(--yellow);
+    color: var(--yellow);
+    fill: var(--yellow);
+
+    svg {
+        width: 18px;
+        height: 18px
+    }
+}
+
+.button-yellow:hover {
+    background-color: var(--yellow);
+    color: var(--white);
+    fill: var(--white);
+}
+
+.button-red {
+    border: 1px solid var(--red);
+    color: var(--red);
+    fill: var(--red);
+
+    svg {
+        width: 18px;
+        height: 18px
+    }
+}
+
+
+.button-red:hover {
+    background-color: var(--red);
+    color: var(--white);
+    fill: var(--white);
+}
+
+
+.school-branches {
+    display: flex;
+    align-items: center;
+}
+
+.school-branch-list {
+    display: flex;
+    column-gap: 8px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+}
+
+.school-branch-badge {
+    display: flex;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 0 8px;
+    background-color: var(--light-gray);
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px
+}
+
+.info-block-separator {
+    border-top: 1px solid var(--light-gray2);
+    width: 100%;
+}
+
+
+/* Стили фильтрации */
+
+.small-filter {
+    height: 30px;
+    width: 100%;
+    border: 1px solid var(--light-gray2);
+    border-radius: 5px;
+    display: flex;
+    cursor: pointer;
+
+    transition: border-color 0.5s;
+}
+
+.small-filter-input {
+    flex: 1;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 10px;
+    cursor: pointer;
+    font-size: 12.8px;
+}
+
+.small-filter-triangle-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px 0 8px;
+    border-radius: 0 15px 15px 0;
+    cursor: pointer;
+}
+
+.small-filter-triangle {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid var(--light-gray2);
+    transform: scale(-1);
+    transition: border-color 0.5s;
+}
+
+.small-filter:hover {
+    border-color: var(--gray);
+
+    .small-filter-triangle {
+        border-bottom: 4px solid var(--gray);
+    }
+}
+
+.small-filter:active {
+    border-color: var(--orange);
+
+    .small-filter-triangle {
+        border-bottom: 4px solid var(--orange);
+    }
+}
+
+.small-students-list-block {
+    width: 100%;
+}
+
+.small-students-list {
+    width: 100%;
+    border: 0;
+    border-collapse: collapse;
+    font-size: 11.5px;
+}
+
+.small-students-list td {
+    height: 30px;
+}
+
+.small-students-list td a {
+    font-weight: 500;
+}
+
+.small-students-list td div {
+    font-weight: 500;
+}
+
+.small-students-list-item-name-td {
+    display: flex;
+}
+
+.small-students-list td:first-child:before {
+    content: counter(students) ".";
+    position: absolute;
+    margin: 5px -12px;
+    color: silver;
+    font-size: .8em;
+    line-height: 0.4em;
+}
+
+.small-students-list-link {
+    display: flex;
+    cursor: pointer;
+    transition: color 0.5s;
+    text-decoration: none;
+    color: var(--black);
+}
+
+.small-students-list-link:hover {
+    color: var(--orange)
+}
+
+
+.small-students-list-link::before {
+    content: "• ";
+    margin-right: 3px;
+    font-size: 3.4em;
+    line-height: 0.2em;
+    color: rgb(57, 179, 41);
+}
+
+.small-students-functional-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    svg {
+        height: 12px;
+        width: 12px;
+    }
+}
+
+
+.show-archived-block {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.show-archived-link {
+    background-color: var(--red);
+    border-radius: 18px;
+    padding: 7px 20px;
+    color: var(--white);
+    font-size: 11.5px;
+    cursor: pointer;
+
+    transition: background-color 0.5s;
+}
+
+.show-archived-link:hover {
+    background-color: var(--dark-red);
+}
+
+
+/* Правая сторона информации о группе */
+.right-window-part-70 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    font-size: 12.8px;
+    row-gap: 30px;
+}
+
+.attendance-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    box-shadow: var(--card-box-shadow);
+    padding: 20px;
+    row-gap: 20px;
+}
+
+.attendance-top-block {
+    display: flex;
+}
+
+.attendance-title-block {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 450;
+}

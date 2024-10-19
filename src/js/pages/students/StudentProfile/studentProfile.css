@@ -334,48 +334,6 @@
     cursor: default;
 }
 
-
-/* Заметки */
-.notes-block {
-    display: flex;
-    min-height: 90px;
-    width: 100%;
-    background-color: var(--white);
-    border-radius: 5px;
-    box-shadow: var(--card-box-shadow);
-}
-
-.notes-colored-block {
-    width: 5px;
-    border-radius: 5px 0 0 5px;
-    background-color: var(--blue1);
-}
-
-.notes-content-block {
-    padding: 10px;
-    width: 100%;
-    display: flex;
-}
-
-.notes-message-block {
-    width: 100%;
-}
-
-.notes-title {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--dark-gray);
-}
-
-.notes-button-block {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: end;
-    padding: 10px;
-}
-
-
 /* Сторона общей информаци о студенте */
 /* Вкладки студента на выбор */
 
