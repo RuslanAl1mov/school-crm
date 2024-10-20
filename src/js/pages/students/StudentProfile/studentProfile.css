@@ -546,19 +546,19 @@
 }
 
 .button-pause {
-    border: 1px solid var(--blue1);
+    border: 1px solid var(--blue);
     cursor: pointer;
     transition: background-color 0.5s;
 }
 
 .button-pause svg {
-    fill: var(--blue1);
+    fill: var(--blue);
     width: 18px;
     height: 18px;
 }
 
 .button-pause:hover {
-    background-color: var(--blue1);
+    background-color: var(--blue);
 }
 
 .button-pause:hover svg {
@@ -755,14 +755,14 @@
 }
 
 .multibutton-blue {
-    color: var(--blue1);
+    color: var(--blue);
 
     .multibutton {
-        border: 1px solid var(--blue1);        
+        border: 1px solid var(--blue);        
     }
 
     .multibutton-block:hover {
-        background-color: var(--blue1);
+        background-color: var(--blue);
         color: var(--white);        
     }
 
@@ -771,15 +771,15 @@
     }
 
     svg {
-        fill: var(--blue1);
+        fill: var(--blue);
     }
     
     .triangle-block {
-        border-left: 1px solid var(--blue1);
+        border-left: 1px solid var(--blue);
     }
 
     .triangle-block:hover {
-        background-color: var(--blue1);
+        background-color: var(--blue);
     }
 
     .triangle-block:hover .multibutton-triangle {
@@ -787,7 +787,7 @@
     }
     
     .multibutton-triangle {
-        border-bottom-color: var(--blue1);
+        border-bottom-color: var(--blue);
     }
 }
 

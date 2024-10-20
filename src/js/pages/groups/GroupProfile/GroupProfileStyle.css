@@ -316,11 +316,14 @@
     background-color: var(--white);
     box-shadow: var(--card-box-shadow);
     padding: 20px;
-    row-gap: 20px;
+    row-gap: 14px;
+    font-size: 11.8px;
 }
 
 .attendance-top-block {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .attendance-title-block {
@@ -328,4 +331,283 @@
     align-items: center;
     font-size: 16px;
     font-weight: 450;
+}
+
+.attendance-navigation-block {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.navigation-blue-central-text {
+    font-weight: 500;
+}
+
+.navigation-blue-button {
+    border: 1px solid var(--blue);
+    border-radius: 3px;
+    background-color: var(--light-blue);
+    padding: 8px 19px;
+    color: var(--blue);
+    display: flex;
+    cursor: pointer;
+    transition: background-color 0.5s, color 0.5s;
+
+    svg {
+        fill: var(--blue);
+        height: 10px;
+        width: 10px;
+        transition: fill 0.5s;
+    }
+}
+
+.navigation-blue-button:hover {
+    background-color: var(--blue);
+    color: var(--white);
+
+    svg {
+        fill: var(--white)
+    }
+
+}
+
+
+/* Строка с заголовком ИМЯ и Датами для отметки посещаемости */
+
+.attendance-table {
+    width: 100%;
+    border: 0;
+    border-collapse: collapse;
+    font-size: 11.5px;
+}
+
+.attendance-table thead th {
+    color: var(--dark-gray);
+    font-weight: 550;
+    text-align: start;
+    padding-left: 5px;
+}
+
+.attendance-table thead tr th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    min-width: 130px;
+    color: var(--black);
+    padding-left: 3px;
+}
+
+.attendance-table thead tr {
+    border: 1px solid var(--light-gray2);
+    border-width: 1px 0 1px 0;
+    height: 35px;
+}
+
+/* Строка с информацией для отметки посещаемости */
+.attendance-table tbody tr {
+    border-bottom: 1px solid var(--light-gray2);
+}
+
+.attendance-table tbody tr th {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    padding: 7px 0;
+}
+
+.attendance-table tbody tr td {
+    position: relative;
+}
+
+.attendance-table-user-image {
+    display: flex;
+    height: 100%;
+}
+
+.attendance-table-user-svg {
+    background-color: var(--gray);
+    opacity: 0.6;
+    border-radius: 5px;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        fill: var(--white);
+        padding: 5px;
+    }
+}
+
+.attendance-td-block {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+
+.attendance-card-rounded {
+    position: absolute;
+    height: 27px;
+    width: 35px;
+    border: 1px solid var(--dark-gray);
+    background-color: var(--white);
+    border-radius: 15px;
+    top: 6px;
+    cursor: pointer;
+
+}
+
+
+.attendance-card-rounded:hover {
+    width: 67px;
+    left: -16px;
+    z-index: 50;
+    box-shadow: var(--box-shadow--white);
+
+    .attendance-card-variants-block {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+.attendance-card-variants-block {
+    display: flex;
+    height: 100%;
+    visibility: hidden;
+    opacity: 0;
+
+    /* transition: visibility 0.3s, opacity 0.3s; */
+}
+
+.attendance-card-variants-block a {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.5s;
+
+}
+
+.attendance-card-variants-block a svg {
+    height: 8px;
+    width: 8px;
+    padding: 3px;
+
+    stroke-width: 3px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+
+    transition: stroke 0.4s, border-color 0.4s;
+}
+
+.attendance-card-variants-block a:last-child {
+    border-radius: 0 15px 15px 0;
+
+    svg {
+        stroke: var(--green);
+        border: 1px solid var(--green);
+        border-radius: 100%;
+    }
+}
+
+.attendance-card-variants-block a:last-child:hover {
+    background-color: var(--green);
+
+    svg {
+        stroke: var(--white);
+        border-color: var(--white);
+    }
+
+}
+
+.attendance-card-variants-block a:first-child {
+    border-radius: 15px 0 0 15px;
+
+    svg {
+        stroke: var(--red);
+        border: 1px solid var(--red);
+        border-radius: 100%;
+    }
+}
+
+.attendance-card-variants-block a:first-child:hover {
+    background-color: var(--red);
+
+    svg {
+        stroke: var(--white);
+        border-color: var(--white);
+    }
+}
+
+
+.attendance-card-variants-block a:first-child {
+    svg {
+        fill: var(--black)
+    }
+}
+
+.attendance-status-block {
+    cursor: default;
+    padding: 3px;
+    border-radius: 3px;
+    color: white;
+    font-size: 11px;
+    font-weight: 500;
+    width: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+.attendance-status--positive {
+    background-color: var(--green);
+}
+
+.attendance-status--negative {
+    background-color: var(--red);
+}
+
+.small-circle-close-block {
+    position: absolute;
+    cursor: pointer;
+    height: 13px;
+    width: 13px;
+    background-color: var(--white);
+    border: 1px solid var(--dark-gray);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: -6px;
+    top: -6px;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.4s, visibility 0.4s;
+
+    svg {
+        padding: 2px;
+        height: 9px;
+        width: 9px;
+        stroke: var(--dark-gray);
+        stroke-width: 3px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+.attendance-status-block:hover .small-circle-close-block {
+    visibility: visible;
+    opacity: 1;
+
+    transition: opacity 0.4s, visibility 0.4s;
 }

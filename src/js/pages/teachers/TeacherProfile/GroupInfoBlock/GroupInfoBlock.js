@@ -8,7 +8,7 @@ const GroupBlockInfo = ({group}) => {
                         <div className="gr-inf-cnt-gr-num">{group.name}</div>
                     </div>
                     <div className="gr-info-cnt-bl">
-                        <div className="gr-inf-cnt-gr-name">{group.name_curs}</div>
+                        <div className="gr-inf-cnt-gr-name">{group.name_course}</div>
                     </div>
                     <div className="gr-info-cnt-bl">
                         <div className="gr-inf-cnt-gr-title">Название комнаты: <strong>{group.classroom_name}</strong></div>

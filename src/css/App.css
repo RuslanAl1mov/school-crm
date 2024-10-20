@@ -13,7 +13,7 @@
     --light-orange: #FFEFC1;
     --yellow: #FFC107;
     --light-blue: #ECF5FF;
-    --blue1: #278EF5;
+    --blue: #278EF5;
     --green: #67C23A;
     --haki: #EAE3CE;
     --dark-haki: #B89849;
@@ -32,6 +32,12 @@
     --card-box-shadow--active: 0px 0px 20px rgba(0, 0, 0, 0.20);
     --box-shadow-modal: 0px 0px 5px rgba(0, 0, 0, 0.20);
     --arrow-box-shadow: -3px -3px 4px rgba(0, 0, 0, 0.15);
+
+    --box-shadow--white: 0px 0px 10px 8px rgba(255, 255, 255, 1);
+    --card-box-shadow--white: 0px 0px 8px rgba(255, 255, 255, 0.10);
+    --card-box-shadow--white--active: 0px 0px 20px rgba(255, 255, 255, 0.20);
+    --box-shadow-modal--white: 0px 0px 5px rgba(255, 255, 255, 0.20);
+    --arrow-box-shadow--white: -3px -3px 4px rgba(255, 255, 255, 0.15);
 }
 
 * {
@@ -247,7 +253,7 @@ body {
 .notes-colored-block {
     width: 5px;
     border-radius: 5px 0 0 5px;
-    background-color: var(--blue1);
+    background-color: var(--blue);
 }
 
 .notes-content-block {

@@ -5,6 +5,34 @@ import { useState } from 'react';
 const GroupProfile = () => {
     const [activeTab, setActiveTab] = useState('attendance');
 
+    const students = [
+        { id: 1, name: "Begmurodov Sunnat", attendance: { '1': true, '3': false, '5': true, '7': false, '9': true, '11': null, '13': null, '15': null, '18': null, '20': null, '22': null, '24': null, '26': null, '28': null } },
+        { id: 2, name: "Jo'raqulov Bobomurod", attendance: { '1': false, '3': true, '5': false, '7': true, '9': false, '11': null, '13': null, '15': null, '18': null, '20': null, '22': null, '24': null, '26': null, '28': null } },
+        { id: 3, name: "Melikova Xadiya", attendance: { '1': true, '3': true, '5': false, '7': false, '9': true, '11': null, '13': null, '15': null, '18': null, '20': null, '22': null, '24': null, '26': null, '28': null } },
+        { id: 4, name: "Zokirov Kamron", attendance: { '1': false, '3': false, '5': true, '7': true, '9': false, '11': null, '13': null, '15': null, '18': null, '20': null, '22': null, '24': null, '26': null, '28': null } },
+        { id: 5, name: "Fayozov Javohir", attendance: { '1': true, '3': false, '5': true, '7': false, '9': true, '11': null, '13': null, '15': null, '18': null, '20': null, '22': null, '24': null, '26': null, '28': null } },
+        { id: 6, name: "To'shbo'riyev Xasan", attendance: { '1': false, '3': true, '5': false, '7': true, '9': false, '11': null, '13': null, '15': null, '18': null, '20': null, '22': null, '24': null, '26': null, '28': null } },
+        { id: 7, name: "Djabarkulov Ayubjon", attendance: { '1': true, '3': true, '5': false, '7': true, '9': false, '11': null, '13': null, '15': null, '18': null, '20': null, '22': null, '24': null, '26': null, '28': null } },
+    ];
+
+
+    const dates = ['1', '3', '5', '7', '9', '11', '13', '15', '18', '20', '22', '24', '26', '28'];
+
+    const [attendanceStatus, setAttendanceStatus] = useState(students.reduce((acc, student) => {
+        acc[student.id] = { ...student.attendance }; // Копируем статус посещаемости для каждого студента
+        return acc;
+    }, {}));
+
+    const handleAttendanceChange = (date, status, studentId) => {
+        setAttendanceStatus((prev) => ({
+            ...prev,
+            [studentId]: {
+                ...prev[studentId],
+                [date]: status // Обновляем статус для конкретного студента и даты
+            }
+        }));
+    };
+
     return (
         <main className="mainwn-min-size">
             <div className="group-prof-main-bl">
@@ -282,17 +310,121 @@ const GroupProfile = () => {
 
                         <div className={`main-big-tab-container ${activeTab === 'attendance' ? 'main-big-tab-container--active' : ''}`}>
                             <div className="attendance-container">
+
+                                {/* Верхний блок контейнера посещаемости */}
                                 <div className="attendance-top-block">
                                     <div className="attendance-title-block">Посещаемость</div>
-                                    <div className="attendance-navigation-block"></div>
+                                    <div className="attendance-navigation-block">
+                                        <a className="navigation-blue-button">
+                                            Текущий
+                                        </a>
+                                        <a className="navigation-blue-button">
+                                            <svg>
+                                                <use href={`${icons}#double-chevron-left`}></use>
+                                            </svg>
+                                        </a>
+                                        <a className="navigation-blue-button">
+                                            <svg>
+                                                <use href={`${icons}#chevron-left`}></use>
+                                            </svg>
+                                        </a>
+                                        <a className="navigation-blue-central-text">
+                                            окт 2024
+                                        </a>
+                                        <a className="navigation-blue-button">
+                                            <svg>
+                                                <use href={`${icons}#chevron-right`}></use>
+                                            </svg>
+                                        </a>
+                                        <a className="navigation-blue-button">
+                                            <svg>
+                                                <use href={`${icons}#double-chevron-right`}></use>
+                                            </svg>
+                                        </a>
+
+                                    </div>
                                 </div>
+
+                                {/* Таблица с Датами для отметки посещаемости */}
+                                <table className="attendance-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Имя</th>
+                                            {dates.map((date) => (
+                                                <th key={date}>{date} окт</th>
+                                            ))}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {students.map((student) => (
+                                            <tr key={student.id}>
+                                                <th>
+                                                    <div className="attendance-table-user-image">
+                                                        <div className="attendance-table-user-svg">
+                                                            <svg>
+                                                                <use href={`${icons}#user`}></use>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div>{student.name}</div>
+                                                </th>
+                                                {
+                                                    dates.map((date) => (
+                                                        <td key={`${student.id}-${date}`}>
+                                                            <div className="attendance-td-block ">
+                                                                {attendanceStatus[student.id][date] == null ? (
+                                                                    <div className="attendance-card-rounded">
+                                                                        <div className="attendance-card-variants-block">
+                                                                            <a onClick={() => handleAttendanceChange(date, false, student.id)}>
+                                                                                <svg>
+                                                                                    <use href={`${icons}#cancel-close-cross-delete`}></use>
+                                                                                </svg>
+                                                                            </a>
+                                                                            <a onClick={() => handleAttendanceChange(date, true, student.id)}>
+                                                                                <svg>
+                                                                                    <use href={`${icons}#checkmark`}></use>
+                                                                                </svg>
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                ) : (
+                                                                    <div>
+                                                                        {attendanceStatus[student.id][date] == true ? (
+                                                                            <a className="attendance-status-block attendance-status--positive" onClick={() => handleAttendanceChange(date, null, student.id)}>
+                                                                                <span>Был</span>
+                                                                                <div className="small-circle-close-block">
+                                                                                    <svg>
+                                                                                        <use href={`${icons}#cancel-close-cross-delete`}></use>
+                                                                                    </svg>
+                                                                                </div>
+                                                                            </a>
+                                                                        ) : (
+                                                                            <a className="attendance-status-block attendance-status--negative" onClick={() => handleAttendanceChange(date, null, student.id)}>
+                                                                                <span>Нет</span>
+                                                                                <div className="small-circle-close-block">
+                                                                                    <svg>
+                                                                                        <use href={`${icons}#cancel-close-cross-delete`}></use>
+                                                                                    </svg>
+                                                                                </div>
+                                                                            </a>
+                                                                        )}
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        </td>
+                                                    ))
+                                                }
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
 
             </div>
-        </main>
+        </main >
     );
 }
 

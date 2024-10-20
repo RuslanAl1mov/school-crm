@@ -183,12 +183,12 @@
 
 .blue-opt-list a:hover {
     background-color: var(--light-blue);
-    color: var(--blue1);
+    color: var(--blue);
 }
 
 .blue-opt-list a:hover .blue-opt-list-icon,
 .hd-user-opt-list a:hover .hd-user-opt-list-icon {
-    fill: var(--blue1);
+    fill: var(--blue);
 }
 
 .hd-user-opt-list a:hover {
