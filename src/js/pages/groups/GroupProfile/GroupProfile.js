@@ -308,6 +308,7 @@ const GroupProfile = () => {
                             <div className="tabs-divider"></div>
                         </div>
 
+                        {/* Вкладка "Посещаемость" */}
                         <div className={`main-big-tab-container ${activeTab === 'attendance' ? 'main-big-tab-container--active' : ''}`}>
                             <div className="attendance-container">
 
@@ -390,23 +391,23 @@ const GroupProfile = () => {
                                                                 ) : (
                                                                     <div>
                                                                         {attendanceStatus[student.id][date] == true ? (
-                                                                            <a className="attendance-status-block attendance-status--positive" onClick={() => handleAttendanceChange(date, null, student.id)}>
+                                                                            <div className="attendance-status-block attendance-status--positive">
                                                                                 <span>Был</span>
-                                                                                <div className="small-circle-close-block">
+                                                                                <a className="small-circle-close-block" onClick={() => handleAttendanceChange(date, null, student.id)}>
                                                                                     <svg>
                                                                                         <use href={`${icons}#cancel-close-cross-delete`}></use>
                                                                                     </svg>
-                                                                                </div>
-                                                                            </a>
+                                                                                </a>
+                                                                            </div>
                                                                         ) : (
-                                                                            <a className="attendance-status-block attendance-status--negative" onClick={() => handleAttendanceChange(date, null, student.id)}>
+                                                                            <div className="attendance-status-block attendance-status--negative">
                                                                                 <span>Нет</span>
-                                                                                <div className="small-circle-close-block">
+                                                                                <a className="small-circle-close-block" onClick={() => handleAttendanceChange(date, null, student.id)}>
                                                                                     <svg>
                                                                                         <use href={`${icons}#cancel-close-cross-delete`}></use>
                                                                                     </svg>
-                                                                                </div>
-                                                                            </a>
+                                                                                </a>
+                                                                            </div>
                                                                         )}
                                                                     </div>
                                                                 )}
@@ -419,6 +420,31 @@ const GroupProfile = () => {
                                     </tbody>
                                 </table>
                             </div>
+                        </div>
+
+                        {/* Вкладка "Онлайн-уроки и материалы" */}
+                        <div className={`main-big-tab-container ${activeTab === 'online-classes' ? 'main-big-tab-container--active' : ''}`}>
+                            <div className="big-nothing-found-bl1--nomargin">Здесь пока ничего нет</div>
+                        </div>
+
+                        {/* Вкладка "Цены со скидкой" */}
+                        <div className={`main-big-tab-container ${activeTab === 'prices' ? 'main-big-tab-container--active' : ''}`}>
+                            <div className="big-nothing-found-bl1--nomargin">Здесь пока ничего нет</div>
+                        </div>
+
+                        {/* Вкладка "Экзамены" */}
+                        <div className={`main-big-tab-container ${activeTab === 'exams' ? 'main-big-tab-container--active' : ''}`}>
+                            <div className="big-nothing-found-bl1--nomargin">Здесь пока ничего нет</div>
+                        </div>
+
+                        {/* Вкладка "История" */}
+                        <div className={`main-big-tab-container ${activeTab === 'history' ? 'main-big-tab-container--active' : ''}`}>
+                            <div className="big-nothing-found-bl1--nomargin">Здесь пока ничего нет</div>
+                        </div>
+
+                        {/* Вкладка "Комментарии" */}
+                        <div className={`main-big-tab-container ${activeTab === 'comments' ? 'main-big-tab-container--active' : ''}`}>
+                            <div className="big-nothing-found-bl1--nomargin">Здесь пока ничего нет</div>
                         </div>
                     </div>
                 </div>
