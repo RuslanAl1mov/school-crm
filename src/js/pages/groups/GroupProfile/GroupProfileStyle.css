@@ -232,9 +232,6 @@
     font-weight: 500;
 }
 
-.small-students-list-item-name-td {
-    display: flex;
-}
 
 .small-students-list td:first-child:before {
     content: counter(students) ".";

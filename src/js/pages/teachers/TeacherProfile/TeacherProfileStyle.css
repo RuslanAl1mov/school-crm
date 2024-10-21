@@ -327,8 +327,7 @@
 .gr-info-stud-list-item {
     display: flex;
     align-items: center;
-    margin-bottom: 18px;
-
+    margin-bottom: 10px;
     width: 100%;
 }
 
