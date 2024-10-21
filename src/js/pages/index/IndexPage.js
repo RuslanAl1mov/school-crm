@@ -103,7 +103,7 @@ const IndexPage = () => {
           </div>
 
           <div className="index-card-bl">
-            <NavLink className="index-card-bl-link" to="/courses">
+            <NavLink className="index-card-bl-link" to="/courses/list">
               <div className="index-card-content-bl">
                 <svg className="index-card-svg">
                   <use href={`${icons}#list_catalog`}></use>
