@@ -57,14 +57,17 @@ const CourseProfile = () => {
                     </div>
 
                     <div className="course-text-info-block">
-                        <div className="crs-text-info-block">
-                            <p className="course-info-text-title">
-                                Описание курса
-                            </p>
-                            <p className="course-info-text-description">
-                                {!courseData?.description ? <Skeleton /> : courseData.description}
-                            </p>
-                        </div>
+                        {courseData?.description == '' ? '' : (
+                            <div className="crs-text-info-block">
+                                <p className="course-info-text-title">
+                                    Описание курса
+                                </p>
+                                <p className="course-info-text-description">
+                                    {courseData?.description == ''}
+                                </p>
+                            </div>
+
+                        )}
 
                         <div className="crs-text-info-block">
                             <p className="course-info-text-title">
