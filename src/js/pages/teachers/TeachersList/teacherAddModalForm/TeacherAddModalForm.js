@@ -43,8 +43,10 @@ const TeachersRightModalForm = ({ isOpen, onClose, loadTeachersData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const formData = new FormData();
+    formData.append('branch', 4); // Удалить после появления авторизации
+
     formData.append('phone_number', cleanPhone(phone)); // Очищаем пробелы
     formData.append('fullname', name);
     formData.append('birth_date', dob);
@@ -53,6 +55,9 @@ const TeachersRightModalForm = ({ isOpen, onClose, loadTeachersData }) => {
     formData.append('password', password);
     if (photo) {
       formData.append('photo', photo);
+    }
+    for (let [name, value] of formData.entries()) {
+      console.log(name, value);
     }
 
     try {
@@ -154,8 +159,8 @@ const TeachersRightModalForm = ({ isOpen, onClose, loadTeachersData }) => {
                   <input
                     type="radio"
                     name="gender"
-                    value="M"
-                    checked={gender === 'M'}
+                    value="m"
+                    checked={gender === 'm'}
                     onChange={(e) => setGender(e.target.value)}
                     required
                   />
@@ -165,8 +170,8 @@ const TeachersRightModalForm = ({ isOpen, onClose, loadTeachersData }) => {
                   <input
                     type="radio"
                     name="gender"
-                    value="W"
-                    checked={gender === 'W'}
+                    value="f"
+                    checked={gender === 'f'}
                     onChange={(e) => setGender(e.target.value)}
                     required
                   />

@@ -48,7 +48,7 @@ const GroupsTable = ({ setTotalGroups, limit }) => {
                             <th>Преподаватель</th>
                             <th>Дни</th>
                             <th>Даты обучения</th>
-                            <th>Кабинетов</th>
+                            <th>Кабинет</th>
                             <th>Студентов</th>
                             <th></th>
                         </tr>
@@ -77,7 +77,7 @@ const GroupsTable = ({ setTotalGroups, limit }) => {
                             <th>Преподаватель</th>
                             <th>Дни</th>
                             <th>Даты обучения</th>
-                            <th>Кабинетов</th>
+                            <th>Кабинет</th>
                             <th>Студентов</th>
                             <th></th>
                         </tr>

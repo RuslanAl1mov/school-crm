@@ -45,12 +45,14 @@
     transition: box-shadow 0.3s;
 }
 
+
 .groups-list-table td {
     padding: 0;
     margin: 0;
     height: 60px;
     border: 0;
 }
+
 
 .groups-list-table td:last-child {
     border-radius: 0 10px 10px 0;

@@ -8,6 +8,8 @@ import icons from "./../../../img/icons/icons.svg";
 
 
 const Header = () => {
+
+    
     const navRightContainerRef = useRef();
 
     useEffect(() => {

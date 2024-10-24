@@ -24,12 +24,21 @@
     background-color: var(--white);
     box-shadow: var(--card-box-shadow);
     cursor: pointer;
-    
+
     transition: box-shadow 0.5s;
 }
 
 .course-list-card:hover {
     box-shadow: var(--card-box-shadow--active);
+}
+
+.course-list-card-link {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--black)
+
 }
 
 .course-img-name-block {
@@ -82,7 +91,7 @@
 }
 
 .course-card-down-name {
-    font-size: 16px;    
+    font-size: 16px;
     font-weight: 500;
 }
 
@@ -93,17 +102,21 @@
 }
 
 .course-card-orange {
-    background-color: var(--orange);
+    background-color: var(--orange) !important;
 }
 
 .course-card-red {
-    background-color: var(--red);
+    background-color: var(--red) !important;
 }
 
 .course-card-blue {
-    background-color: var(--blue);
+    background-color: var(--blue) !important;
 }
 
 .course-card-gray {
-    background-color: var(--gray);
+    background-color: var(--gray) !important;
+}
+
+.course-card-green {
+    background-color: var(--green) !important;
 }

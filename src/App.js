@@ -14,7 +14,8 @@ import StudentsList from "./js/pages/students/StudentsList/StudentsList";
 import StudentProfile from "./js/pages/students/StudentProfile/StudentProfile";
 import GroupsList from "./js/pages/groups/GroupsList/GroupsList";
 import GroupProfile from "./js/pages/groups/GroupProfile/GroupProfile";
-import CoursesList from "./js/pages/courses/CoursesList";
+import CoursesListPage from "./js/pages/courses/CoursesList/CoursesListPage";
+import CourseProfile from "./js/pages/courses/CourseProfile/CourseProfile";
 
 function App() {
   return (
@@ -34,7 +35,8 @@ function App() {
           <Route path="/students/profile/:id" element={<StudentProfile />} />
           <Route path="/groups/list" element={<GroupsList />} />
           <Route path="/groups/profile/:id" element={<GroupProfile />} />
-          <Route path="/courses/list" element={<CoursesList />} />
+          <Route path="/courses/list" element={<CoursesListPage />} />
+          <Route path="/courses/profile/:id" element={<CourseProfile />} />
         </Routes>
 
       </Router>

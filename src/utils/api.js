@@ -18,11 +18,12 @@ export const fetchTeachersList = async (page = 1, limit = 50) => {
     if (!response.ok) {
         throw new Error('Ошибка при загрузке списка преподавателей');
     }
+
     return await response.json();
 };
 
 export const createTeacher = async (formData) => {
-    const response = await fetch(`${HOST_NAME}/teachers/create/`, {
+    const response = await fetch(`${HOST_NAME}/employees/create/`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -30,7 +31,12 @@ export const createTeacher = async (formData) => {
         body: formData,
     });
     if (!response.ok) {
-        throw new Error('Ошибка при добавлении преподавателя');
+        response.text().then(text => {
+            console.log('Ошибка:', response.status);
+            console.log('Тело ошибки:', text); // тело ошибки
+        }
+        )
+        throw new Error(`Ошибка при добавлении преподавателя:\n ${response.text}}`);
     }
     return await response.json();
 }
@@ -52,7 +58,7 @@ export const fetchGroupInfo = async (teacherId, groupId) => {
 };
 
 
-// Students API
+// API Студентов
 
 export const fetchStudentsList = async (page = 1, limit = 10) => {
     const response = await fetch(`${HOST_NAME}/students/list/?page=${page}&page_size=${limit}`);
@@ -71,7 +77,7 @@ export const fetchStudent = async (studentId) => {
 };
 
 
-// Groups API
+// API Групп
 
 export const fetchGroupsList = async (page = 1, limit = 10) => {
     const response = await fetch(`${HOST_NAME}/groups/list/?page=${page}&page_size=${limit}`);
@@ -85,6 +91,44 @@ export const fetchGroup = async (studentId) => {
     const response = await fetch(`${HOST_NAME}/groups/profile/${studentId}`);
     if (!response.ok) {
         throw new Error('Ошибка при загрузке информации о группе');
+    }
+    return await response.json();
+};
+
+
+// API Курсов
+
+export const createCourse = async (courseForm) => {
+    const response = await fetch(`${HOST_NAME}/courses/create/`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+        },
+        body: courseForm,
+    });
+    if (!response.ok) {
+        response.text().then(text => {
+            console.log('Ошибка:', response.status);
+            console.log('Тело ошибки:', text); // тело ошибки
+        }
+        )
+        throw new Error(`Ошибка при создании курса:\n ${response.text}}`);
+    }
+    return await response.json();
+}
+
+export const fetchCoursesList = async () => {
+    const response = await fetch(`${HOST_NAME}/courses/list/`);
+    if (!response.ok) {
+        throw new Error('Ошибка при загрузке списка курсов');
+    }
+    return await response.json();
+};
+
+export const fetchCourse = async (courseId) => {
+    const response = await fetch(`${HOST_NAME}/courses/info/${courseId}`);
+    if (!response.ok) {
+        throw new Error('Ошибка при загрузке информации о курсе');
     }
     return await response.json();
 };

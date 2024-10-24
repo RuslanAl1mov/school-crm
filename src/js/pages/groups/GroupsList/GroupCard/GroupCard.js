@@ -5,14 +5,14 @@ const GroupCard = ({ groupData, groupNumber }) => {
     return (
         <tr className="group-card">
             <td>
-                <NavLink to={`/groups/profile/${groupData.id}`} className="group-card-link">
+                <NavLink to={`/groups/profile/${groupData.id}`} className="group-card-link" id="group-course-td">
                     <div className="group-card-link-num">
                         {groupNumber}
                     </div>
                 </NavLink>
             </td>
             <td>
-                <NavLink to={`/groups/profile/${groupData.id}`} className="group-card-link">
+                <NavLink to={`/groups/profile/${groupData.id}`} className="group-card-link" id="group-course-td">
                     <span id="group-name">
                         {groupData.name}
                     </span>
@@ -30,7 +30,7 @@ const GroupCard = ({ groupData, groupNumber }) => {
             </td>
             <td>
                 <NavLink to={`/groups/profile/${groupData.id}`} className="group-card-link">
-                    {groupData.days ? groupData.days : ''}
+                    {groupData.days_label ? groupData.days_label : ''}
                     <br/>
                     {groupData.lesson_start_time ? groupData.lesson_start_time : ''}
                 </NavLink>

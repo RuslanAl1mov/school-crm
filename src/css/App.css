@@ -311,3 +311,7 @@ body {
 .--margin-top40px {
     margin-top: 40px !important;
 }
+
+.w-40 {
+    width: 40% !important;
+}

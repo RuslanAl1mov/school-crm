@@ -58,7 +58,7 @@ const StudentProfile = () => {
                                         <div className="student-main-info-block-left">
                                             <div className="student-photo-block">
                                                 {studentData?.photo ? (
-                                                    <img src={studentData.photo} alt="Фото преподавателя" className="student-photo" />
+                                                    <img src={studentData.photo} alt="Фото студента" className="student-photo" />
                                                 ) : (
                                                     <div className="student-photo">
                                                         <svg className="student-photo-svg">
