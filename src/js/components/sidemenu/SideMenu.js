@@ -40,7 +40,7 @@ const SideMenu = () => {
 
                     <div className="side-menu-nav-item-bl">
                         <NavLink to="/groups/list"
-                            className={({ isActive }) => isActive ? 'side-menu-nav-item-link--active' : ''}>
+                            className={({ isActive }) => isActive || location.pathname.startsWith("/groups") ?  'side-menu-nav-item-link--active' : ''}>
                             <div className={`side-mn-bl-upline ${location.pathname === '/groups/list' ? 'side-mn-bl-upline--active' : ''}`}></div>
                             <div className="side-menu-svg-bl">
                                 <svg className={`side-menu-svg ${location.pathname === '/groups/list' ? 'side-menu-svg--active' : ''}`}>
@@ -53,7 +53,7 @@ const SideMenu = () => {
 
                     <div className="side-menu-nav-item-bl">
                         <NavLink to="/courses/list"
-                            className={({ isActive }) => isActive ? 'side-menu-nav-item-link--active' : ''}>
+                            className={({ isActive }) => isActive || location.pathname.startsWith("/courses") ?  'side-menu-nav-item-link--active' : ''}>
                             <div className={`side-mn-bl-upline ${location.pathname === '/courses/list' ? 'side-mn-bl-upline--active' : ''}`}></div>
                             <div className="side-menu-svg-bl">
                                 <svg className={`side-menu-svg ${location.pathname === '/courses/list' ? 'side-menu-svg--active' : ''}`}>
@@ -66,7 +66,7 @@ const SideMenu = () => {
 
                     <div className="side-menu-nav-item-bl">
                         <NavLink to="/settings"
-                            className={({ isActive }) => isActive ? 'side-menu-nav-item-link--active' : ''}>
+                            className={({ isActive }) => isActive || location.pathname.startsWith("/settings") ?  'side-menu-nav-item-link--active' : ''}>
                             <div className={`side-mn-bl-upline ${location.pathname === '/settings' ? 'side-mn-bl-upline--active' : ''}`}></div>
                             <div className="side-menu-svg-bl">
                                 <svg className={`side-menu-svg ${location.pathname === '/settings' ? 'side-menu-svg--active' : ''}`}>
