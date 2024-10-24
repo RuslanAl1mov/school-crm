@@ -11,7 +11,7 @@
     text-align: center;
     box-shadow: var(--box-shadow);
     background-color: var(--white);
-    z-index: 49;
+    z-index: 99;
 }
 
 .header-navbar {
@@ -57,7 +57,7 @@
 .extra-bl-abs {
     position: absolute;
     padding-top: 15px;
-    z-index: 50;
+    z-index: 100;
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.5s;
@@ -97,7 +97,7 @@
     box-shadow: var(--arrow-box-shadow);
     transform: rotate(45deg);
     margin: -3px 0 0 9px;
-    z-index: 50;
+    z-index: 100;
 }
 
 /* Левая сторона */
