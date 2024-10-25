@@ -58,9 +58,11 @@ const StudentProfile = () => {
                                         <div className="student-main-info-block-left">
                                             <div className="student-photo-block">
                                                 {studentData?.photo ? (
-                                                    <img src={studentData.photo} alt="Фото студента" className="student-photo" />
+                                                    <img src={studentData.photo} alt="Фото студента" className="student-photo student-photo--active" />
                                                 ) : (
+                                                    
                                                     <div className="student-photo">
+                                                        {studentData?.photo}
                                                         <svg className="student-photo-svg">
                                                             <use href={`${icons}#user`}></use>
                                                         </svg>
