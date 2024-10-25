@@ -56,9 +56,6 @@ const TeachersRightModalForm = ({ isOpen, onClose, loadTeachersData }) => {
     if (photo) {
       formData.append('photo', photo);
     }
-    for (let [name, value] of formData.entries()) {
-      console.log(name, value);
-    }
 
     try {
       await createTeacher(formData);

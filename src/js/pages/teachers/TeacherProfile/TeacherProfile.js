@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import TeacherProfileHeader from './TeacherProfileHeader/TeacherProfileHeader';
 import GroupBlockInfo from './GroupInfoBlock/GroupInfoBlock';
 import GroupBlockInfoSkeleton from './GroupInfoBlock/GroupInfoBlockSkeleton';
-import { fetchTeacher, fetchGroupInfo } from '../../../../utils/api';
+import { fetchTeacher, fetchTeacherGroupsInfo } from '../../../../utils/api';
 
 
 const TeacherProfile = () => {
@@ -30,7 +30,7 @@ const TeacherProfile = () => {
                 setTeacherData(teacherData);
                 if (teacherData?.groups?.length > 0) {
                     setActiveGroup(teacherData.groups[0].id);
-                    const groupData = await fetchGroupInfo(teacherId, teacherData.groups[0].id);
+                    const groupData = await fetchTeacherGroupsInfo(teacherId, teacherData.groups[0].id);
                     setGroupInfo(groupData);
                 }
             } catch (error) {
@@ -48,7 +48,7 @@ const TeacherProfile = () => {
         setLoadingGroupInfo(true);
         setActiveGroup(groupId);
         try {
-            const groupData = await fetchGroupInfo(teacherId, groupId);
+            const groupData = await fetchTeacherGroupsInfo(teacherId, groupId);
             setGroupInfo(groupData);
         } catch (error) {
             setError(error.message);
