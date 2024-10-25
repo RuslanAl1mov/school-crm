@@ -17,10 +17,13 @@
 .modal-content {
   background-color: var(--white);
   max-width: 500px;
+  max-height: 600px;
   width: 100%;
   padding: 20px;
   box-shadow: var(--box-shadow-modal);
   position: relative;
+  overflow-y: auto;
+
 }
 
 .modal-header {

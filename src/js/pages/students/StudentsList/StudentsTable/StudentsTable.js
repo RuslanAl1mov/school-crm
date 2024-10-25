@@ -3,9 +3,10 @@ import StudentCard from "./../StudentCard/StudentCard";
 import { fetchStudentsList } from "../../../../../utils/api";
 import Pagination from "../../../../components/pagination/Pagination";
 import StudentCardSkeleton from "../StudentCard/StudentCardSkeleton";
+import StudentAddModalForm from "../studentAddModalForm/StudentAddModalForm";
 
 
-const StudentsTable = ({ setTotalStudents, limit }) => {
+const StudentsTable = ({ setTotalStudents, limit, isModalOpen, handleCloseModal }) => {
     const [studentsData, setStudentsData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -101,6 +102,8 @@ const StudentsTable = ({ setTotalStudents, limit }) => {
                     onPageChange={handlePageChange}
                 />
             )}
+
+            <StudentAddModalForm isOpen={isModalOpen} onClose={handleCloseModal} loadStudentsData={loadStudents} />
         </>
     );
 };

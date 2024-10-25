@@ -10,7 +10,7 @@ const StudentGroupsTab = ({ studentData }) => {
 
                 { studentData?.groups?.length > 0 ?
                 studentData?.groups?.map((groupData) => (
-                    <StudentGroupCard groupData={groupData} />
+                    <StudentGroupCard groupData={groupData} key={groupData.id}/>
                 )) : (
                     <StudentNoGroupCard />
                  )

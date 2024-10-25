@@ -1,7 +1,6 @@
 import "./StudentsListStyle.css";
 
 import React, { useState } from "react";
-import StudentAddModalForm from "./studentAddModalForm/StudentAddModalForm";
 import StudentsTable from "./StudentsTable/StudentsTable";
 
 const StudentsList = () => {
@@ -31,11 +30,10 @@ const StudentsList = () => {
                     </div>
                 </div>
 
-                <StudentsTable setTotalStudents={setTotalStudents} limit={limit}/>
+                <StudentsTable setTotalStudents={setTotalStudents} limit={limit} isModalOpen={isModalOpen} handleCloseModal={handleCloseModal}/>
 
             </div>
 
-            <StudentAddModalForm isOpen={isModalOpen} onClose={handleCloseModal} />
         </main>
     );
 }

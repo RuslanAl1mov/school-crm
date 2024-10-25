@@ -34,8 +34,7 @@ export const createTeacher = async (formData) => {
         response.text().then(text => {
             console.log('Ошибка:', response.status);
             console.log('Тело ошибки:', text); // тело ошибки
-        }
-        )
+        })
         throw new Error(`Ошибка при добавлении преподавателя:\n ${response.text}}`);
     }
     return await response.json();
@@ -49,7 +48,7 @@ export const fetchTeacher = async (teacherId) => {
     return await response.json();
 };
 
-export const fetchGroupInfo = async (teacherId, groupId) => {
+export const fetchTeacherGroupsInfo = async (teacherId, groupId) => {
     const response = await fetch(`${HOST_NAME}/teachers/profile/${teacherId}/group/${groupId}`);
     if (!response.ok) {
         throw new Error('Ошибка при загрузке информации о группе преподавателя');
@@ -59,6 +58,24 @@ export const fetchGroupInfo = async (teacherId, groupId) => {
 
 
 // API Студентов
+
+export const createStudent = async (formData) => {
+    const response = await fetch(`${HOST_NAME}/students/create/`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+        },
+        body: formData,
+    });
+    if (!response.ok) {
+        response.text().then(text => {
+            console.log('Ошибка:', response.status);
+            console.log('Тело ошибки:', text); // тело ошибки
+        })
+        throw new Error(`Ошибка при добавлении студента:\n ${response.text}}`);
+    }
+    return await response.json();
+}
 
 export const fetchStudentsList = async (page = 1, limit = 10) => {
     const response = await fetch(`${HOST_NAME}/students/list/?page=${page}&page_size=${limit}`);
@@ -79,16 +96,20 @@ export const fetchStudent = async (studentId) => {
 
 // API Групп
 
-export const fetchGroupsList = async (page = 1, limit = 10) => {
+export const fetchGroupsList = async (page = 1, limit = 1000) => {
     const response = await fetch(`${HOST_NAME}/groups/list/?page=${page}&page_size=${limit}`);
     if (!response.ok) {
+        response.text().then(text => {
+            console.log('Ошибка:', response.status);
+            console.log('Тело ошибки:', text); // тело ошибки
+        })
         throw new Error('Ошибка при загрузке списка групп');
     }
     return await response.json();
 };
 
-export const fetchGroup = async (studentId) => {
-    const response = await fetch(`${HOST_NAME}/groups/profile/${studentId}`);
+export const fetchGroup = async (groupId) => {
+    const response = await fetch(`${HOST_NAME}/groups/info/${groupId}`);
     if (!response.ok) {
         throw new Error('Ошибка при загрузке информации о группе');
     }
