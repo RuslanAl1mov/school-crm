@@ -1,9 +1,36 @@
 import './GroupProfileStyle.css'
 import icons from "./../../../../img/icons/icons.svg";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { fetchGroup } from '../../../../utils/api';
 
 const GroupProfile = () => {
+    const { id: groupId } = useParams();
+    const [groupData, setGroupData] = useState(null); 
+    const [isLoading, setIsLoading] = useState(true);
+    const [isError, setIsError] = useState(true);
+    const [error, setError] = useState(null);
+
     const [activeTab, setActiveTab] = useState('attendance');
+
+    useEffect(() => {
+        const loadAboutGroupInfo = async () => {
+            setIsLoading(true);
+            setError(null);
+            try {
+                const data = await fetchGroup(groupId);
+                console.log(data);
+                setGroupData(data);
+            } catch (error) {
+                setIsError(true);
+                setError("Ошибка при загрузке данных о группе");
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
+        loadAboutGroupInfo();
+    }, [])
 
     const students = [
         { id: 1, name: "Begmurodov Sunnat", attendance: { '1': true, '3': false, '5': true, '7': false, '9': true, '11': null, '13': null, '15': null, '18': null, '20': null, '22': null, '24': null, '26': null, '28': null } },
@@ -37,7 +64,7 @@ const GroupProfile = () => {
         <main className="mainwn-min-size">
             <div className="group-prof-main-bl">
                 <div className="mn-title-bl">
-                    <h1>A102 ・ A1&A2 ・ Nurova Maftuna</h1>
+                    <h1>{groupData?.name} ・ {groupData?.course_name} ・ {groupData?.teacher_name}</h1>
                 </div>
                 <div className="horizontal-separated-windows-30to70 --margin-top10px">
                     {/* Сторона с информацией о группе и создания заметок */}
@@ -47,17 +74,17 @@ const GroupProfile = () => {
                         <div className="group-info-block">
                             <div className="group-data-block">
                                 <div className="group-main-info-block">
-                                    <p className="group-main-info-text"><span>Курс: </span>A1&A2</p>
-                                    <p className="group-main-info-text"><span>Преподававтель: </span>Mardiyeva Sitora</p>
-                                    <p className="group-main-info-text"><span>Цена: </span>420 000 UZS</p>
-                                    <p className="group-main-info-text"><span>Время: </span>Четные дни ・ 10:00</p>
-                                    <p className="group-main-info-text"><span>Кабинеты: </span>Trust</p>
-                                    <p className="group-main-info-text"><span>Вместимость комнаты: </span>20</p>
-                                    <p className="group-main-info-text"><span>Даты обучения: </span><br />10.09.2024 — 10.01.2025</p>
-                                    <p className="group-main-info-id-field">(id: 116359)</p>
+                                    <p className="group-main-info-text"><span>Курс: </span>{groupData?.course_name}</p>
+                                    <p className="group-main-info-text"><span>Преподававтель: </span>{groupData?.teacher_name}</p>
+                                    <p className="group-main-info-text"><span>Цена: </span>{groupData?.price} UZS</p>
+                                    <p className="group-main-info-text"><span>Время: </span>{groupData?.days} ・ {groupData?.lesson_start_time}</p>
+                                    <p className="group-main-info-text"><span>Кабинеты: </span>{groupData?.classroom_name}</p>
+                                    <p className="group-main-info-text"><span>Вместимость комнаты: </span>{groupData?.capacity_room}</p>
+                                    <p className="group-main-info-text"><span>Даты обучения: </span><br />{groupData?.start_date} — {groupData?.end_date}</p>
+                                    <p className="group-main-info-id-field">(id: {groupData?.id})</p>
                                     <div className="school-branches">
                                         <p className="school-info-block-title">Филиалы:</p>
-                                        <div className="school-branch-badge">Leader Learning centre</div>
+                                        <div className="school-branch-badge">{groupData?.branch_name}</div>
                                     </div>
                                 </div>
                                 <div className="group-action-buttons-block">
@@ -104,127 +131,8 @@ const GroupProfile = () => {
                             <div className="small-students-list-block">
                                 <table className="small-students-list">
                                     <tbody>
-
-                                        <tr className="small-students-list-item">
-                                            <td className="small-students-list-item-name-td">
-                                                <a className="small-students-list-link">
-                                                    Begmurodov Sunnat
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <div className="small-students-list-item-phonenum-td">
-                                                    (90) 123-45-67
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a className="small-students-functional-link">
-                                                    <svg className="index-card-svg">
-                                                        <use href={`${icons}#menu_2`}></use>
-                                                    </svg>
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr className="small-students-list-item">
-                                            <td className="small-students-list-item-name-td">
-                                                <a className="small-students-list-link">
-                                                    Jo'raqulov Bobomurod
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <div className="small-students-list-item-phonenum-td">
-                                                    (77) 157-65-64
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a className="small-students-functional-link">
-                                                    <svg className="index-card-svg">
-                                                        <use href={`${icons}#menu_2`}></use>
-                                                    </svg>
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr className="small-students-list-item">
-                                            <td className="small-students-list-item-name-td">
-                                                <a className="small-students-list-link">
-                                                    Melikova Xadiya
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <div className="small-students-list-item-phonenum-td">
-                                                    (97) 892-83-33
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a className="small-students-functional-link">
-                                                    <svg className="index-card-svg">
-                                                        <use href={`${icons}#menu_2`}></use>
-                                                    </svg>
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr className="small-students-list-item">
-                                            <td className="small-students-list-item-name-td">
-                                                <a className="small-students-list-link">
-                                                    Zokirov Kamron
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <div className="small-students-list-item-phonenum-td">
-                                                    (91) 187-77-89
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a className="small-students-functional-link">
-                                                    <svg className="index-card-svg">
-                                                        <use href={`${icons}#menu_2`}></use>
-                                                    </svg>
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr className="small-students-list-item">
-                                            <td className="small-students-list-item-name-td">
-                                                <a className="small-students-list-link">
-                                                    Fayozov Javohir
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <div className="small-students-list-item-phonenum-td">
-                                                    (94) 364-05-19
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a className="small-students-functional-link">
-                                                    <svg className="index-card-svg">
-                                                        <use href={`${icons}#menu_2`}></use>
-                                                    </svg>
-                                                </a>
-                                            </td>
-                                        </tr>
-
-                                        <tr className="small-students-list-item">
-                                            <td className="small-students-list-item-name-td">
-                                                <a className="small-students-list-link">
-                                                    To'shbo'riyev Xasan
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <div className="small-students-list-item-phonenum-td">
-                                                    (94) 364-05-19
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a className="small-students-functional-link">
-                                                    <svg className="index-card-svg">
-                                                        <use href={`${icons}#menu_2`}></use>
-                                                    </svg>
-                                                </a>
-                                            </td>
-                                        </tr>
-
+                                        
+                                        
                                         <tr className="small-students-list-item">
                                             <td className="small-students-list-item-name-td">
                                                 <a className="small-students-list-link">
@@ -257,14 +165,14 @@ const GroupProfile = () => {
                         </div>
 
                         {/* Заметки */}
-                        <div class="notes-block">
-                            <div class="notes-colored-block"></div>
-                            <div class="notes-content-block">
-                                <div class="notes-message-block">
-                                    <p class="notes-title">Заметка</p>
+                        <div className="notes-block">
+                            <div className="notes-colored-block"></div>
+                            <div className="notes-content-block">
+                                <div className="notes-message-block">
+                                    <p className="notes-title">Заметка</p>
                                 </div>
                                 <a>
-                                    <div class="action-button button-flag">
+                                    <div className="action-button button-flag">
                                         <svg>
                                             <use href={`${icons}#flag`}></use>
                                         </svg>
