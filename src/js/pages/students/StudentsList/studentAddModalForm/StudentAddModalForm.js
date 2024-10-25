@@ -80,7 +80,7 @@ const StudentAddModalForm = ({ isOpen, onClose, loadStudentsData }) => {
     studentForm.append("fullname", name);
     studentForm.append("birth_date", date_of_birth);
     studentForm.append("gender", gender);
-    studentForm.append("comment_info", comments);
+    studentForm.append("comment", comments);
     studentForm.append("password", password);
     studentForm.append("additional_info", {});
     if (photo) {
