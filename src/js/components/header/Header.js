@@ -3,7 +3,7 @@ import './HeaderStyle.css';
 import { NavLink } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 
-import logo from "./../../../img/image/logo.png";
+import logo from "./../../../img/image/logo1.png";
 import icons from "./../../../img/icons/icons.svg";
 
 
@@ -52,7 +52,7 @@ const Header = () => {
                         </NavLink>
 
                         <div className="hd-title">
-                            <span>Leader Learning centre</span>
+                            <span>Филиал Школы №1</span>
                         </div>
                         <div className="extra-bl-rel" onMouseEnter={(event) => hoverShowHiddenModal(event, true)}
                             onMouseLeave={(event) => hoverShowHiddenModal(event, false)}>

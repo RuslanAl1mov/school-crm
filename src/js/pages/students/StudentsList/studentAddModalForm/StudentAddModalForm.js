@@ -113,7 +113,7 @@ const StudentAddModalForm = ({ isOpen, onClose, loadStudentsData }) => {
     const clearForm = () => {
       setPhone('');
       setName('');
-      setDob('');
+      setDateOfBirth('');
       setGender('');
       setComments('');
       setPassword('');
@@ -127,7 +127,7 @@ const StudentAddModalForm = ({ isOpen, onClose, loadStudentsData }) => {
     }
   };
 
-  const handleAddStudentoGroupClick = () => {
+  const handleAddStudentToGroupClick = () => {
     setShowAddToGroupField(true);
   }
 
@@ -282,7 +282,7 @@ const StudentAddModalForm = ({ isOpen, onClose, loadStudentsData }) => {
             {/* Ссылка для добавления студента в группу */}
             <div className="set-password-link-block">
               {!showAddToGroupField && (
-                <a href="#" onClick={handleAddStudentoGroupClick} className="set-password-link">
+                <a href="#" onClick={handleAddStudentToGroupClick} className="set-password-link">
                   + Добавить в группу
                 </a>
               )}
